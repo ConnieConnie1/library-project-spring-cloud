@@ -147,6 +147,17 @@ INSERT INTO AUTHOR (NAME, SURNAME, GENRE_ID, BIOGRAPHY) VALUES ('John', 'Grisham
 INSERT INTO AUTHOR (NAME, SURNAME, GENRE_ID, BIOGRAPHY) VALUES ('H.P.', 'Lovecraft', 5, 'H.P. Lovecraft è stato uno scrittore statunitense noto per i suoi racconti di orrore cosmico, che hanno influenzato il genere horror.');
 INSERT INTO AUTHOR (NAME, SURNAME, GENRE_ID, BIOGRAPHY) VALUES ('Charles', 'Dickens', 11, 'Charles Dickens è stato uno degli scrittori inglesi più importanti del XIX secolo, celebre per romanzi come "Oliver Twist" e "Grandi speranze".');
 INSERT INTO AUTHOR (NAME, SURNAME, GENRE_ID, BIOGRAPHY) VALUES ('Margaret', 'Mitchell', 4, 'Margaret Mitchell è stata una scrittrice statunitense, autrice del celebre romanzo "Via col vento".');
+INSERT INTO AUTHOR (NAME, SURNAME, GENRE_ID, BIOGRAPHY) VALUES ('Gabriel Garcia', 'Marquez', 11, 'Gabriel Garcia Marquez è stato uno degli scrittori latinoamericani più importanti, autore di Cento anni di solitudine.');
+INSERT INTO AUTHOR (NAME, SURNAME, GENRE_ID, BIOGRAPHY) VALUES ('J.R.R.', 'Tolkien', 1, 'J.R.R. Tolkien è stato uno degli autori fantasy più celebri, noto per il suo epico romanzo Il signore degli anelli.');
+INSERT INTO AUTHOR (NAME, SURNAME, GENRE_ID, BIOGRAPHY)VALUES ('Elena', 'Ferrante', 11, 'Elena Ferrante è lo pseudonimo di una misteriosa scrittrice italiana, autrice della saga de L''amica geniale.');
+INSERT INTO AUTHOR (NAME, SURNAME, GENRE_ID, BIOGRAPHY) VALUES ('George', 'Orwell', 11, 'George Orwell è stato uno scrittore britannico autore di opere come 1984 e La fattoria degli animali.');
+INSERT INTO AUTHOR (NAME, SURNAME, GENRE_ID, BIOGRAPHY) VALUES ('Franz', 'Kafka', 12, 'Franz Kafka è stato uno scrittore boemo di lingua tedesca, noto per opere come Il processo e La metamorfosi.');
+INSERT INTO AUTHOR (NAME, SURNAME, GENRE_ID, BIOGRAPHY) VALUES ('George R.R.', 'Martin', 1, 'George R.R. Martin è uno scrittore statunitense famoso per la serie di romanzi Cronache del ghiaccio e del fuoco, che ha ispirato la serie televisiva Il Trono di Spade.');
+INSERT INTO AUTHOR (NAME, SURNAME, GENRE_ID, BIOGRAPHY) VALUES ('Dan', 'Brown', 4, 'Dan Brown è uno scrittore statunitense famoso per i suoi thriller, tra cui "Il Codice Da Vinci" e "Angeli e Demoni".');
+INSERT INTO AUTHOR (NAME, SURNAME, GENRE_ID, BIOGRAPHY) VALUES ('Umberto', 'Eco', 11, 'Umberto Eco è stato uno degli scrittori italiani più importanti del XX secolo.');
+INSERT INTO AUTHOR (NAME, SURNAME, GENRE_ID, BIOGRAPHY) VALUES ('Suzanne', 'Collins', 2, 'Suzanne Collins è una scrittrice e sceneggiatrice statunitense, autrice della trilogia di romanzi Hunger Games.');
+INSERT INTO AUTHOR (NAME, SURNAME, GENRE_ID, BIOGRAPHY) VALUES ('Daniele', 'Luttazzi', 11, 'Daniele Luttazzi è uno scrittore, comico e conduttore televisivo italiano.');
+INSERT INTO AUTHOR (NAME, SURNAME, GENRE_ID, BIOGRAPHY) VALUES ('William', 'Shakespeare', 11, 'William Shakespeare è stato uno dei più grandi drammaturghi e poeti della letteratura mondiale, autore di opere come Romeo e Giulietta e Amleto.');
 
 
 --popolo la tabella dei libri
@@ -176,47 +187,63 @@ INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHE
 VALUES (6, 'Che significa diventare adulti?', 13, '2024-01-01', '2024-01-01', 1, 11.99, '9780060256655', 97, 'Che significa diventare adulti? Si deve studiare per forza? Che cos’è la normalità? Che succede quando si muore? A queste e altre domande Banana Yoshimoto cerca di rispondere in un piccolo saggio che, si augura, possa funzionare “un po’ come un amuleto” per aiutare i lettori di tutte le età a ritrovare serenità e speranza nei momenti più difficili.', 5);
 
 
--- popolo la tabella utenti
-INSERT INTO "USER" (EMAIL, PASSWORD, DATE_OF_REGISTRATION, PREFERRED_GENRES)
-VALUES
-('user1@example.com', 'password1', '2023-01-01', 1),
-('user2@example.com', 'password2', '2023-01-02', 2),
-('user3@example.com', 'password3', '2023-01-03', 3),
-('user4@example.com', 'password4', '2023-01-04', 4),
-('user5@example.com', 'password5', '2023-01-05', 5),
-('user6@example.com', 'password6', '2023-01-06', 6),
-('user7@example.com', 'password7', '2023-01-07', 7),
-('user8@example.com', 'password8', '2023-01-08', 8),
-('user9@example.com', 'password9', '2023-01-09', 9),
-('user10@example.com', 'password10', '2023-01-10', 10),
-('user11@example.com', 'password11', '2023-01-11', 11),
-('user12@example.com', 'password12', '2023-01-12', 12),
-('user13@example.com', 'password13', '2023-01-13', 13),
-('user14@example.com', 'password14', '2023-01-14', 14),
-('user15@example.com', 'password15', '2023-01-15', 15);
+INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
+VALUES (7, 'L''isola alla fine del mondo', 12, '2023-02-01', '2023-02-01', 2, 18.99, '9788804628524', 220, 'Un uomo naufraga su un’isola deserta dopo un incidente aereo. Lottando per sopravvivere, scopre che l''isola non è così disabitata come sembra, e che nasconde segreti che metteranno alla prova la sua forza e la sua sanità mentale.', 4);
 
--- Popolamento della tabella ORDERS
-INSERT INTO ORDERS (ORDER_NUMBER, BOOK_ID, USER_ID, ADDRESS, BOOKING_DATE, ORDER_TOTAL)
-VALUES
-(1001, 1, 1, 'Via Roma 1, Milano, Italia', '2023-01-01', 25.99),
-(1002, 2, 2, 'Via Garibaldi 2, Roma, Italia', '2023-01-02', 19.99),
-(1003, 3, 3, 'Piazza San Marco 3, Venezia, Italia', '2023-01-03', 35.50),
-(1004, 4, 4, 'Corso Vittorio Emanuele 4, Napoli, Italia', '2023-01-04', 28.75),
-(1005, 5, 5, 'Via della Conciliazione 5, Firenze, Italia', '2023-01-05', 30.00),
-(1006, 6, 6, 'Piazza Duomo 6, Palermo, Italia', '2023-01-06', 22.49),
-(1007, 1, 7, 'Corso Buenos Aires 7, Torino, Italia', '2023-01-07', 27.99),
-(1008, 2, 8, 'Via del Corso 8, Bologna, Italia', '2023-01-08', 18.99),
-(1009, 3, 9, 'Corso Umberto I 9, Genova, Italia', '2023-01-09', 32.25),
-(1010, 4, 10, 'Piazza Bra 10, Verona, Italia', '2023-01-10', 23.75),
-(1011, 5, 11, 'Piazza del Campo 11, Siena, Italia', '2023-01-11', 20.99),
-(1012, 6, 12, 'Corso Cavour 12, Perugia, Italia', '2023-01-12', 24.50),
-(1013, 1, 13, 'Via dei Tribunali 13, Catania, Italia', '2023-01-13', 28.00),
-(1014, 2, 14, 'Piazza del Popolo 14, Lecce, Italia', '2023-01-14', 19.25),
-(1015, 3, 15, 'Corso Vittorio Veneto 15, Trento, Italia', '2023-01-15', 35.99),
-(1016, 4, 1, 'Via Roma 16, Milano, Italia', '2023-01-16', 27.99),
-(1017, 5, 2, 'Via Garibaldi 17, Roma, Italia', '2023-01-17', 24.50),
-(1018, 6, 3, 'Piazza San Marco 18, Venezia, Italia', '2023-01-18', 18.75),
-(1019, 1, 4, 'Corso Vittorio Emanuele 19, Napoli, Italia', '2023-01-19', 31.00),
-(1020, 2, 5, 'Via della Conciliazione 20, Firenze, Italia', '2023-01-20', 22.25);
+INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
+VALUES (8, 'L''ombra del vento', 11, '2023-03-01', '2023-03-01', 2, 22.99, '9788804628500', 320, 'Un giovane ragazzo scopre un libro misterioso in una biblioteca segreta e si immerge in una avventura che svela oscuri segreti del suo passato familiare e della città di Barcellona.', 5);
+
+INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
+VALUES (9, 'Il mago', 1, '2023-04-01', '2023-04-01', 3, 19.99, '9788804628517', 280, 'Un giovane mago scopre di avere poteri magici e deve imparare a padroneggiarli mentre affronta minacce oscure e intrighi magici.', 4);
+
+INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
+VALUES (10, 'Il cammino dell''uomo', 2, '2023-05-01', '2023-05-01', 3, 24.99, '9788804628531', 350, 'Un giovane avventuriero intraprende un viaggio epico per scoprire il vero significato della vita e della morte, incontrando ostacoli e alleati lungo il cammino.', 5);
+
+INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
+VALUES (11, 'La città perduta', 3, '2023-06-01', '2023-06-01', 4, 20.99, '9788804628548', 300, 'Un investigatore privato viene assunto per trovare una città leggendaria che si crede sia scomparsa nel deserto secoli fa, ma che potrebbe ancora nascondere tesori e segreti nascosti.', 4);
+
+
+INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
+VALUES (12, 'L''alchimista', 1, '2023-07-01', '2023-07-01', 5, 17.99, '9788804628555', 250, 'Un pastore spagnolo intraprende un viaggio per trovare un tesoro nascosto, ma lungo il cammino scopre che il vero tesoro è la conoscenza e la autorealizzazione.', 5);
+
+
+INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
+VALUES (13, '1Q84', 1, '2023-08-01', '2023-08-01', 5, 23.99, '9788804628562', 500, 'In un mondo parallelo in cui la realtà è distorta e minacciata da forze oscure, due persone si trovano intrappolate in una spirale di eventi che li porterà a confrontarsi con la verità e il destino.', 4);
+
+
+INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
+VALUES (14, 'Cento anni di solitudine', 11, '2023-09-01', '2023-09-01', 6, 26.99, '9788804628579', 400, 'Il romanzo narra la storia della famiglia Buendía nel paese immaginario di Macondo, attraverso generazioni segnate da amori proibiti, tragedie e maledizioni, creando un affresco magico e realistico allo stesso tempo.', 5);
+
+
+INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
+VALUES (15, 'Il signore degli anelli', 1, '2023-10-01', '2023-10-01', 7, 29.99, '9788804628586', 600, 'Un giovane hobbit di nome Frodo Baggins intraprende un epico viaggio per distruggere un potente anello e salvare il suo mondo dalla minaccia del Signore Oscuro Sauron.', 5);
+
+
+INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
+VALUES (16, 'L''amica geniale', 12, '2023-11-01', '2023-11-01', 8, 21.99, '9788804628593', 350, 'Il romanzo segue una amicizia tra due ragazze, Elena e Lila, nel quartiere povero di Napoli negli anni 50, esplorando le loro vite e i loro destini intrecciati.', 5);
+
+
+INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
+VALUES (17, '1984', 1, '2023-12-01', '2023-12-01', 9, 18.99, '9788804628609', 320, 'In un mondo totalitario dominato dal Grande Fratello, il protagonista Winston Smith lotta per mantenere la sua libertà di pensiero e identità individuale.', 5);
+
+
+INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
+VALUES (18, 'Il processo', 12, '2024-01-01', '2024-01-01', 10, 19.99, '9788804628616', 300, 'Il romanzo segue la storia di Josef K., che viene arrestato e processato da un sistema giudiziario oscuro e assurdo, senza mai sapere di che crimine è accusato.', 4);
+
+
+INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
+VALUES (19, 'Cronache del ghiaccio e del fuoco', 1, '2024-02-01', '2024-02-01', 6, 27.99, '9788804628623', 700, 'Un epica saga fantasy che segue le lotte per il potere tra famiglie nobili e le minacce di creature soprannaturali in un mondo simile all Europa medievale.', 5);
+
+
+INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
+VALUES (20, 'Il codice Da Vinci', 3, '2024-03-01', '2024-03-01', 12, 23.99, '9788804628630', 400, 'Un professore di simbologia religiosa e una criptologa indagano su una serie di omicidi collegati a un segreto millenario che potrebbe sconvolgere le fondamenta della cristianità.', 4);
+
+INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
+VALUES (21, 'Il nome della rosa', 3, '2024-04-01', '2024-04-01', 2, 22.99, '9788804628647', 500, 'Un frate domenicano e il suo allievo indagano su una serie di omicidi in un monastero medievale, affrontando misteri teologici e intrighi politici.', 5);
+
+INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
+VALUES (22, 'La ragazza di Fuoco', 2, '2024-05-01', '2024-05-01', 3, 21.99, '9788804628654', 350, 'Dopo aver vinto i pericolosi Hunger Games, Katniss Everdeen si
+
+
 
 
