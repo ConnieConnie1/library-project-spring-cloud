@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS GENRE (
 CREATE TABLE PUBLISHER (
     ID SERIAL PRIMARY KEY,
     PUBLISHER_NAME VARCHAR(255),
-    DESCRIPTION BYTEA
+    DESCRIPTION VARCHAR(3000)
 );
 
 -- creo la tabella autori
@@ -88,6 +88,37 @@ ADD CONSTRAINT FK_ID_OF_PAST_ORDERS FOREIGN KEY (ID_OF_PAST_ORDERS) REFERENCES O
 
 ALTER TABLE "USER"
 ADD CONSTRAINT FK_ID_OF_CURRENT_ORDERS FOREIGN KEY (ID_OF_CURRENT_ORDERS) REFERENCES ORDERS(ID);
+
+
+-- popolo la tabella generi
+INSERT INTO GENRE (GENRE) VALUES ('Fantascienza');
+INSERT INTO GENRE (GENRE) VALUES ('Romanzo');
+INSERT INTO GENRE (GENRE) VALUES ('Giallo');
+INSERT INTO GENRE (GENRE) VALUES ('Thriller');
+INSERT INTO GENRE (GENRE) VALUES ('Horror');
+INSERT INTO GENRE (GENRE) VALUES ('Storico');
+INSERT INTO GENRE (GENRE) VALUES ('Avventura');
+INSERT INTO GENRE (GENRE) VALUES ('Biografia');
+INSERT INTO GENRE (GENRE) VALUES ('Saggistica');
+INSERT INTO GENRE (GENRE) VALUES ('Poesia');
+INSERT INTO GENRE (GENRE) VALUES ('Fumetti');
+INSERT INTO GENRE (GENRE) VALUES ('Narrativa');
+INSERT INTO GENRE (GENRE) VALUES ('Stranieri');
+INSERT INTO GENRE (GENRE) VALUES ('Hobby');
+INSERT INTO GENRE (GENRE) VALUES ('Politica');
+
+-- popolo la tabella degli editori
+INSERT INTO PUBLISHER (PUBLISHER_NAME, DESCRIPTION) VALUES ('Feltrinelli', 'La casa editrice Giangiacomo Feltrinelli Editore è una delle principali realtà italiane nel settore editoriale, fondata nel 1954 a Milano.');
+INSERT INTO PUBLISHER (PUBLISHER_NAME, DESCRIPTION) VALUES ('Adelphi', 'Adelphi è una casa editrice italiana fondata nel 1962 da Roberto Calasso, specializzata in classici della letteratura e opere di saggistica e narrativa.');
+INSERT INTO PUBLISHER (PUBLISHER_NAME, DESCRIPTION) VALUES ('Laterza', 'La casa editrice Laterza, fondata nel 1901 a Bari, è una delle più antiche e prestigiose case editrici italiane, specializzata in pubblicazioni di saggistica e manualistica.');
+INSERT INTO PUBLISHER (PUBLISHER_NAME, DESCRIPTION) VALUES ('Einaudi', 'La casa editrice Giulio Einaudi Editore è stata fondata nel 1933 a Torino da Giulio Einaudi, noto per la pubblicazione di importanti opere della letteratura e della saggistica.');
+INSERT INTO PUBLISHER (PUBLISHER_NAME, DESCRIPTION) VALUES ('Mondadori', 'Arnoldo Mondadori Editore è una casa editrice italiana fondata nel 1907 a Milano, tra le più grandi e influenti del panorama editoriale italiano, con un ampio catalogo che spazia dalla narrativa alla saggistica, passando per la divulgazione.');
+INSERT INTO PUBLISHER (PUBLISHER_NAME, DESCRIPTION) VALUES ('Rizzoli', 'La casa editrice Rizzoli è stata fondata nel 1927 a Milano, è una delle case editrici più importanti in Italia, con un vasto catalogo che comprende narrativa, saggistica e opere di vario genere.');
+INSERT INTO PUBLISHER (PUBLISHER_NAME, DESCRIPTION) VALUES ('Garzanti', 'La casa editrice Garzanti è stata fondata nel 1882 a Milano, è una delle più antiche e prestigiose case editrici italiane, con una produzione che spazia dalla narrativa alla saggistica.');
+INSERT INTO PUBLISHER (PUBLISHER_NAME, DESCRIPTION) VALUES ('Giunti', 'La casa editrice Giunti è stata fondata nel 1841 a Firenze, è una delle più antiche case editrici italiane, con un catalogo che comprende narrativa, saggistica, manualistica e opere per infanzia.');
+INSERT INTO PUBLISHER (PUBLISHER_NAME, DESCRIPTION) VALUES ('Bompiani', 'La casa editrice Bompiani è stata fondata nel 1929 a Milano da Valentino Bompiani, è nota per la pubblicazione di importanti opere della letteratura italiana e internazionale.');
+INSERT INTO PUBLISHER (PUBLISHER_NAME, DESCRIPTION) VALUES ('Sellerio', 'Sellerio Editore è una casa editrice italiana fondata nel 1969 a Palermo da Elvira Sellerio, è specializzata nella pubblicazione di opere della letteratura italiana e siciliana, oltre che di romanzi gialli.');
+
 
 
 
