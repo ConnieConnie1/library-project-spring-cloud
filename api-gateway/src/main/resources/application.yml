@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8083/eureka
+
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: bookModule
+          uri: lb://FIRST-SERVICE
+          predicates:
+            - Path=/book/**
+        - id: ecommerceModule
+          uri: lb://SECOND-SERVICE
+          predicates:
+            - Path=/ecommerce/**
