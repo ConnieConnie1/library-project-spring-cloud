@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.library</groupId>
-	<artifactId>firstMicroservice</artifactId>
+	<artifactId>book-microservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>firstMicroservice</name>
 	<description>Demo project for Spring Boot</description>
