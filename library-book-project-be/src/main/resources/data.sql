@@ -236,14 +236,13 @@ VALUES (19, 'Cronache del ghiaccio e del fuoco', 1, '2024-02-01', '2024-02-01', 
 
 
 INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
-VALUES (20, 'Il codice Da Vinci', 3, '2024-03-01', '2024-03-01', 12, 23.99, '9788804628630', 400, 'Un professore di simbologia religiosa e una criptologa indagano su una serie di omicidi collegati a un segreto millenario che potrebbe sconvolgere le fondamenta della cristianità.', 4);
+VALUES (20, 'Il codice Da Vinci', 3, '2024-03-01', '2024-03-01', 10, 23.99, '9788804628630', 400, 'Un professore di simbologia religiosa e una criptologa indagano su una serie di omicidi collegati a un segreto millenario che potrebbe sconvolgere le fondamenta della cristianità.', 4);
 
 INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
 VALUES (21, 'Il nome della rosa', 3, '2024-04-01', '2024-04-01', 2, 22.99, '9788804628647', 500, 'Un frate domenicano e il suo allievo indagano su una serie di omicidi in un monastero medievale, affrontando misteri teologici e intrighi politici.', 5);
 
 INSERT INTO BOOK (AUTHOR_ID, TITLE, GENRE_ID, EDITION_DATE, PRINT_DATE, PUBLISHER_ID, PRICE, EAN, PAGE_NUYMBER, SYNOPSIS, RATING)
-VALUES (22, 'La ragazza di Fuoco', 2, '2024-05-01', '2024-05-01', 3, 21.99, '9788804628654', 350, 'Dopo aver vinto i pericolosi Hunger Games, Katniss Everdeen si
-
+VALUES (22, 'La ragazza di Fuoco', 2, '2024-05-01', '2024-05-01', 3, 21.99, '9788804628654', 350, 'Non puoi rifiutarti di partecipare agli Hunger Games. Una volta scelto, il tuo destino è scritto. Dovrai lottare fino all''ultimo, persino uccidere per farcela. Katniss ha vinto. Ma è davvero salva? Dopo la settantaquattresima edizione degli Hunger Games, l''implacabile reality show che si svolge a Panem ogni anno, lei e Peeta sono, miracolosamente, ancora vivi. Katniss dovrebbe sentirsi sollevata, perfino felice. Dopotutto, è riuscita a tornare dalla sua famiglia e dall''amico di sempre, Gale. Invece nulla va come Katniss vorrebbe',4)
 
 
 
