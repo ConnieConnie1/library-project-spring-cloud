@@ -1,5 +1,7 @@
 package com.library.bookMicroservice.service;
 
+import com.library.bookMicroservice.record.BookRecord;
+import com.library.bookMicroservice.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -8,11 +10,11 @@ import java.util.List;
 public interface BookService {
     //Iniezione repository
     @Autowired
-    //Iniezione del mapper
-    @Autowired
+    private BookRepository bookRepository;
+
 
     //GetAllBooks
-    public List <BookDTO> getAllBooks(){
-        return  BookDTO;
+    public List <BookRecord> getAllBooks(){
+        return  BookRecord;
     };
 }
