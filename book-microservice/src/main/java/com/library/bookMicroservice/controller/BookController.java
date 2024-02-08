@@ -13,4 +13,9 @@ public class BookController {
     public String test(){
         return "TEST";
     }
+
+    @GetMapping("getAll")
+    public List<Book> getAllBooks() {
+        return bookService.getAllBooks();
+    }
 }
