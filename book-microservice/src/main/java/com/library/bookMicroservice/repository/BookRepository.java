@@ -1,8 +1,7 @@
 package com.library.bookMicroservice.repository;
 
+import com.library.bookMicroservice.entity.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface BookRepository extends JpaRepository {
+public interface BookRepository extends JpaRepository<Book, Long> {
 }

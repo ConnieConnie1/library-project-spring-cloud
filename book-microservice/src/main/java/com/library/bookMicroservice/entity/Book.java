@@ -10,11 +10,7 @@ import lombok.Setter;
 
 import java.util.Date;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@Data
+
 @Entity
 @Table(name="BOOK")
 
@@ -54,5 +50,91 @@ public class Book {
     @Column(name = "RATING")
     private Integer rating;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
+    }
+
+    public Long getGenreId() {
+        return genreId;
+    }
+
+    public void setGenreId(Long genreId) {
+        this.genreId = genreId;
+    }
+
+    public Date getEditionDate() {
+        return editionDate;
+    }
+
+    public void setEditionDate(Date editionDate) {
+        this.editionDate = editionDate;
+    }
+
+    public Date getPrintDate() {
+        return printDate;
+    }
+
+    public void setPrintDate(Date printDate) {
+        this.printDate = printDate;
+    }
+
+    public Long getPublisherId() {
+        return publisherId;
+    }
+
+    public void setPublisherId(Long publisherId) {
+        this.publisherId = publisherId;
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public String getEan() {
+        return ean;
+    }
+
+    public void setEan(String ean) {
+        this.ean = ean;
+    }
+
+    public Integer getPageNumber() {
+        return pageNumber;
+    }
+
+    public void setPageNumber(Integer pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
 }
