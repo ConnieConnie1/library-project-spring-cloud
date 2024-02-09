@@ -14,7 +14,7 @@ import "../App.css";
 const MyNavbar = () => {
   return (
     <>
-      <Navbar className="bg-body-tertiary d-flex justify-content-between px-5" data-bs-theme="light" >
+      <Navbar className="bg-body-secondary justify-content-between px-5" data-bs-theme="light" >
         <Col className="d-flex">
         <Navbar.Brand href="#">📚</Navbar.Brand>
         <h2>Book project</h2>
@@ -29,14 +29,14 @@ const MyNavbar = () => {
           />
           <Button variant="outline-info">Ricerca</Button>
         </Form>
-        <Col className="d-flex">
+        <Col className="d-flex ms-auto">
         <Nav.Link href="#action1">❤️</Nav.Link>
         <Nav.Link href="#action2">🧺</Nav.Link>
         </Col>
       </Navbar>
       <Container>
         <Row className="mt-4">
-          <ButtonGroup className="me-4" size="lg" aria-label="First group">
+          <ButtonGroup className="me-2" size="lg" aria-label="First group" style={{marginX:'3rem'}}>
             <Button variant="outline-info">Libri</Button>{" "}
             <Button variant="outline-info">Libri outlet</Button>{" "}
             <Button variant="outline-info">Libri in inglese</Button>{" "}
