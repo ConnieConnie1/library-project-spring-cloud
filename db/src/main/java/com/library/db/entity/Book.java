@@ -7,7 +7,6 @@ import java.util.Date;
 
 @Entity
 @Table(name="BOOK")
-
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +15,9 @@ public class Book {
 
     @Column(name = "AUTHOR_ID")
     private Long authorId;
+
+    @Column(name = "TITLE")
+    private String title;
 
     @Column(name = "GENRE_ID")
     private Long genreId;

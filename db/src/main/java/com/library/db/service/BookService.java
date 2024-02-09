@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class BookService {
@@ -15,6 +16,7 @@ public class BookService {
     //GetAllBooks
 
     public Book getBookById(Long id){
+        Optional<Book> book = bookRepository.findById(id);
         return bookRepository.findById(id).isPresent() ? bookRepository.findById(id).get() : null;
     }
 }
