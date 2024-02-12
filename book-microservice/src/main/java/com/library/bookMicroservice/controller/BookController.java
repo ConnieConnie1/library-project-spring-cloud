@@ -17,6 +17,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/books")
+@CrossOrigin = (origins= "http://localhost:3000")
 public class BookController {
     @Autowired
     private BookService bookService;
