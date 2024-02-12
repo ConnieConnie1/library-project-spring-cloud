@@ -24,7 +24,7 @@ public class BookService {
     };
     public BookRecord getBookById(Long id){
         String databaseServiceUrl = discoveryClient.getInstances("db-microservice").get(0).getUri().toString();
-        ResponseEntity<Book> response = restTemplate.getForEntity(databaseServiceUrl + "/api/book/" + id, Book.class);
+        ResponseEntity<Book> response = restTemplate.getForEntity(databaseServiceUrl + "/api/db/book/" + id, Book.class);
         Book book = response.getBody();
         if(Objects.nonNull(book)){
             return new BookRecord(book.getId(),book.getAuthorId(), book.getGenreId(), book.getEditionDate(), book.getPrintDate(), book.getPublisherId(), book.getPrice(), book.getEan(), book.getPageNumber(), book.getSynopsis(),book.getRating());

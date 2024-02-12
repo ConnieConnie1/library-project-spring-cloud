@@ -14,8 +14,8 @@ public class GatewayConfig {
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("book-service", r -> r.path("/api/books/**").uri("lb://book-microservice"))
-                .route("db-service", r -> r.path("/api/db/**").uri("lb://db-microservice"))
+                .route("book-service", r -> r.path("/api/books/**").uri("http://localhost:8081/api/books"))
+                .route("db-service", r -> r.path("/api/db/**").uri("lb://DB-MICROSERVICE"))
                 .build();
     }
     @Bean
