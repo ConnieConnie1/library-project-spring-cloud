@@ -17,4 +17,9 @@ public class UserController {
     public User createUser(@RequestBody UserRecord userRecord){
         return userService.createNewUser(userRecord);
     }
+
+    @GetMapping("login")
+    public User login(@RequestParam String mail, @RequestParam String password){
+        return userService.getUserByEmailAndPassword(mail, password);
+    }
 }
