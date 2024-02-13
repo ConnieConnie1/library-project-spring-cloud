@@ -19,4 +19,8 @@ public class BookService {
         Optional<Book> book = bookRepository.findById(id);
         return bookRepository.findById(id).isPresent() ? bookRepository.findById(id).get() : null;
     }
+
+    public List<Book> getAllBooks(){
+        return  bookRepository.findAll();
+    }
 }

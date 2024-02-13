@@ -17,7 +17,10 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-
+    @GetMapping
+    public List<Book> getAllBooks(){
+        return bookService.getAllBooks();
+    }
     @GetMapping("/{bookId}")
     public Book getBookById(@PathVariable("bookId") Long bookId){
         return bookService.getBookById(bookId);
