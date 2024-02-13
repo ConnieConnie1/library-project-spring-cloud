@@ -5,7 +5,7 @@ import axiosInstance from '../axiosConfig';
 const Banner = () => {
 
   const handleButtonClick = () => {
-    axiosInstance.get('/books/1')
+    axiosInstance.get('/api/books/1')
       .then(response => {
   
         console.log('Risposta dal backend:', response.data);
