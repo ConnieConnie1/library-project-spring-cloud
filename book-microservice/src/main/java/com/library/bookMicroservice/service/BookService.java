@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -28,12 +29,42 @@ public class BookService {
     private RestTemplate restTemplate;
     @Autowired
     private DiscoveryClient discoveryClient;
+
     //GetAllBooks
-    public List<BookRecord> getAllBooks() {
+    public List<BookRecord> getAllBooks(Long authorId, Long genreId, Date editionDate, Date printDate, Long publisherId, Long price, Integer pageNumber, Integer rating) {
         String databaseServiceUrl = discoveryClient.getInstances("db-microservice").get(0).getUri().toString();
-        /*ResponseEntity<List<Book>> response = restTemplate.exchange(databaseServiceUrl + "/api/db/book" , Book.class); */
+        String url = databaseServiceUrl + "/api/db/book?";
+        if (authorId != null) {
+            url += "authorId=" + authorId + "&";
+        }
+        if (genreId != null) {
+            url += "genreId=" + genreId + "&";
+        }
+        if (editionDate != null) {
+            url += "editionDate=" + editionDate.getTime() + "&";
+        }
+        if (printDate != null) {
+            url += "printDate=" + printDate.getTime() + "&";
+        }
+        if (publisherId != null) {
+            url += "publisherId=" + publisherId + "&";
+        }
+        if (price != null) {
+            url += "price=" + price + "&";
+        }
+        if (pageNumber != null) {
+            url += "pageNumber=" + pageNumber + "&";
+        }
+        if (rating != null) {
+            url += "rating=" + rating + "&";
+        }
+
+        if (url.endsWith("&")) {
+            url = url.substring(0, url.length() - 1);
+        }
+
         ResponseEntity<List<Book>> response = restTemplate.exchange(
-                databaseServiceUrl + "/api/db/book",
+                url,  // Utilizza l'URL costruito
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Book>>() {

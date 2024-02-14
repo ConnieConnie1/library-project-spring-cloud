@@ -12,6 +12,10 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
 import java.util.Objects;
+import java.util.Date;
+import org.springframework.web.bind.annotation.*;
+
+
 
 @RestController
 @RequestMapping("")
@@ -21,8 +25,16 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping("")
-    public List<BookRecord> getAllBooks() {
-        return bookService.getAllBooks();
+    public List<BookRecord> getAllBooks(
+            @RequestParam(required = false) Long authorId,
+            @RequestParam(required = false) Long genreId,
+            @RequestParam(required = false) Date editionDate,
+            @RequestParam(required = false) Date printDate,
+            @RequestParam(required = false) Long publisherId,
+            @RequestParam(required = false) Long price,
+            @RequestParam(required = false) Integer pageNumber,
+            @RequestParam(required = false) Integer rating) {
+        return bookService.getAllBooks(authorId, genreId, editionDate, printDate, publisherId, price, pageNumber, rating);
     }
 
     @GetMapping("/{id}")
