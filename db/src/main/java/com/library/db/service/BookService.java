@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class BookService {
     @Autowired
-    BookRepository bookRepository;
+    private BookRepository bookRepository;
     //GetAllBooks
 
     public Book getBookById(Long id) {
