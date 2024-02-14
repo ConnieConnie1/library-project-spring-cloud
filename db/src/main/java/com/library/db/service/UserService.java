@@ -28,7 +28,10 @@ public class UserService {
     }
 
     public User getUserByEmailAndPassword(String email, String password){
-        String criptedPassword = encoder.encode(password);
-        return userRepository.findByEmailAndPassword(email, criptedPassword);
+        User user = userRepository.findByEmail(email);
+        if (user != null && encoder.matches(password, user.getPassword())) {
+            return user;
+        }
+        return null;
     }
 }
