@@ -2,6 +2,8 @@ package com.library.db.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="PUBLISHER")
 public class Publisher {
@@ -14,6 +16,11 @@ public class Publisher {
 
     @Column(name = "DESCRIPTION")
     private String description;
+
+
+
+    @OneToMany(mappedBy = "publisher")
+    private List<Book> book;
 
     public Long getId() {
         return id;
@@ -37,6 +44,14 @@ public class Publisher {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Book> getBook() {
+        return book;
+    }
+
+    public void setBook(List<Book> book) {
+        this.book = book;
     }
 }
 

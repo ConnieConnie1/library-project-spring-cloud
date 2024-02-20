@@ -1,6 +1,7 @@
 package com.library.bookMicroservice.controller;
 
 import com.library.bookMicroservice.record.BookRecord;
+import com.library.bookMicroservice.record.PaginationResponse;
 import com.library.bookMicroservice.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,7 +26,8 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping("")
-    public List<BookRecord> getAllBooks(
+    public Response getAllBooks(
+
             @RequestParam(required = false) Long authorId,
             @RequestParam(required = false) Long genreId,
             @RequestParam(required = false) Date editionDate,
@@ -33,8 +35,23 @@ public class BookController {
             @RequestParam(required = false) Long publisherId,
             @RequestParam(required = false) Long price,
             @RequestParam(required = false) Integer pageNumber,
-            @RequestParam(required = false) Integer rating) {
-        return bookService.getAllBooks(authorId, genreId, editionDate, printDate, publisherId, price, pageNumber, rating);
+            @RequestParam(required = false) Integer rating,
+            @RequestParam(required = false, defaultValue = "10") Integer pageSize,
+            @RequestParam(required = false, defaultValue = "1") Integer currentPage) {
+
+         /*
+            public Response getBookById(@PathVariable Long id) {
+        BookRecord response = bookService.getBookById(id);
+        if (Objects.isNull(response)) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        return Response.ok(response).build();
+             */
+        PaginationResponse<BookRecord> responseBooks =  bookService.getAllBooks(authorId, genreId, editionDate, printDate, publisherId, price, pageNumber, rating, pageSize, currentPage);
+        if (Objects.isNull(responseBooks)) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        return Response.ok(responseBooks).build();
     }
 
     @GetMapping("/{id}")

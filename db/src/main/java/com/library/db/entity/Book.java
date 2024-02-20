@@ -1,5 +1,6 @@
 package com.library.db.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -14,14 +15,14 @@ public class Book {
     private Long id;
 
     @ManyToOne(targetEntity = Author.class, fetch = FetchType.LAZY)
-    @Column(name = "AUTHOR_ID")
+    @JoinColumn(name = "AUTHOR_ID")
     private Author author;
 
     @Column(name = "TITLE")
     private String title;
 
     @ManyToOne(targetEntity = Genre.class, fetch = FetchType.LAZY)
-    @Column(name = "GENRE_ID")
+    @JoinColumn(name = "GENRE_ID")
     private Genre genre;
 
     @Column(name = "EDITION_DATE")
@@ -31,7 +32,7 @@ public class Book {
     private Date printDate;
 
     @ManyToOne(targetEntity = Publisher.class, fetch = FetchType.LAZY)
-    @Column(name = "PUBLISHER_ID")
+    @JoinColumn(name = "PUBLISHER_ID")
     private Publisher publisher;
 
     @Column(name = "PRICE")

@@ -3,7 +3,7 @@ package com.library.bookMicroservice.service;
 import com.library.bookMicroservice.entity.Book;
 import com.library.bookMicroservice.record.BookRecord;
 
-import com.library.bookMicroservice.repository.BookRepository;
+import com.library.bookMicroservice.record.PaginationResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +22,7 @@ import java.util.stream.Collectors;
 @Service
 public class BookService {
     private static final Logger logger = LoggerFactory.getLogger(BookService.class);
-    @Autowired
-    private BookRepository bookRepository;
+
 
     @Autowired
     private RestTemplate restTemplate;
@@ -31,9 +30,12 @@ public class BookService {
     private DiscoveryClient discoveryClient;
 
     //GetAllBooks
-    public List<BookRecord> getAllBooks(Long authorId, Long genreId, Date editionDate, Date printDate, Long publisherId, Long price, Integer pageNumber, Integer rating) {
+    public PaginationResponse getAllBooks(Long authorId, Long genreId, Date editionDate, Date printDate, Long publisherId, Long price, Integer pageNumber, Integer rating, Integer pageSize, Integer currentPage) {
         String databaseServiceUrl = discoveryClient.getInstances("db-microservice").get(0).getUri().toString();
-        String url = databaseServiceUrl + "/api/db/book?";
+        String url = databaseServiceUrl + "/api/db/book";
+        if (isParameterPresent(authorId, genreId, editionDate, printDate, publisherId, price, pageNumber, rating, pageSize, currentPage)){
+            url += "?";
+        }
         if (authorId != null) {
             url += "authorId=" + authorId + "&";
         }
@@ -58,19 +60,29 @@ public class BookService {
         if (rating != null) {
             url += "rating=" + rating + "&";
         }
+        if (pageSize != null) {
+            url += "pageSize=" + pageSize + "&";
+        }
+        if (currentPage != null) {
+            url += "currentPage=" + currentPage + "&";
+        }
 
         if (url.endsWith("&")) {
             url = url.substring(0, url.length() - 1);
         }
 
-        ResponseEntity<List<Book>> response = restTemplate.exchange(
+        ResponseEntity<PaginationResponse<Book>> response = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<Book>>() {
+                new ParameterizedTypeReference<PaginationResponse<Book>>() {
                 });
-        List<Book> books = response.getBody();
-        return books.stream()
+        List<Book> books = response.getBody().getData();
+        PaginationResponse<BookRecord> result = new PaginationResponse<BookRecord>();
+        result.setCurrentPage(response.getBody().getCurrentPage());
+        result.setTotalPage(response.getBody().getTotalPage());
+
+        List<BookRecord> data = books.stream()
                 .map(book -> new BookRecord(
                         book.getId(),
                         book.getAuthorId(),
@@ -84,6 +96,9 @@ public class BookService {
                         book.getSynopsis(),
                         book.getRating()))
                 .collect(Collectors.toList());
+
+        result.setData(data);
+        return result;
     }
 
     public BookRecord getBookById(Long id){
@@ -95,4 +110,11 @@ public class BookService {
         }
         return null;
     }
+
+    public boolean isParameterPresent(Long authorId, Long genreId, Date editionDate, Date printDate, Long publisherId, Long price, Integer pageNumber, Integer rating, Integer pageSize, Integer currentPage) {
+        if (authorId != null || genreId != null || editionDate != null || printDate != null || publisherId != null || price != null || pageNumber != null || rating != null || pageSize != null || currentPage != null){
+            return true;
+        } return false;
+    }
+
 }
