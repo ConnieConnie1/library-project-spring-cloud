@@ -18,6 +18,12 @@ public class GatewayConfig {
                 .route("author-microservice:8085",r -> r.path("/api/authors/**")
                         .filters(f -> f.filter(authFilter))
                         .uri("lb://AUTHOR-MICROSERVICE"))
+                .route("book-microservice:8081",r -> r.path("/api/books/**")
+                        .filters(f -> f.filter(authFilter))
+                        .uri("lb://BOOK-MICROSERVICE"))
+                .route("eccomerce-microservice:8082",r -> r.path("/api/orders/**")
+                        .filters(f -> f.filter(authFilter))
+                        .uri("lb://ECCOMERCE-SERVICE"))
                 .build();
     }
 

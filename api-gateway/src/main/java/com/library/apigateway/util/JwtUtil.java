@@ -1,4 +1,4 @@
-package com.library.apigateway.filter;
+package com.library.apigateway.util;
 
 import io.jsonwebtoken.Claims;
 

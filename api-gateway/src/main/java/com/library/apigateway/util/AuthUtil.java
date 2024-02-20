@@ -1,6 +1,7 @@
-package com.library.apigateway.filter;
+package com.library.apigateway.util;
 
 
+import com.library.apigateway.filter.Credential;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
