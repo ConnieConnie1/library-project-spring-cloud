@@ -2,6 +2,8 @@ package com.library.db.repository;
 
 import com.library.db.entity.Author;
 import com.library.db.entity.Book;
+import com.library.db.entity.Genre;
+import com.library.db.entity.Publisher;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -25,13 +27,14 @@ public class BookRepositoryImpl implements BookCustomRepository{
         // JOIN
         Join<Book, Author> join = root.join("author");
         // Join con genere e con editore
-        Join<Book,>
+        Join<Book, Genre> join2 = root.join("genre");
+        Join <Book, Publisher> join3 = root.join("publisher");
 
         if (authorId != null){
             predicates.add(cb.equal(join.get("id"), authorId));
         }
         if (genreId != null){
-            predicates.add(cb.equal(root.get("genreId"), genreId));
+            predicates.add(cb.equal(join2.get("id"), genreId));
         }
         if (editionDate != null){
             predicates.add(cb.equal(root.get("editionDate"), editionDate));
@@ -40,7 +43,7 @@ public class BookRepositoryImpl implements BookCustomRepository{
             predicates.add(cb.equal(root.get("printDate"), printDate));
         }
         if (publisherId != null) {
-            predicates.add(cb.equal(root.get("publisherId"), publisherId));
+            predicates.add(cb.equal(join3.get("id"), publisherId));
         }
         if (price != null) {
             predicates.add(cb.equal(root.get("price"), price));

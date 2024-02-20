@@ -20,8 +20,9 @@ public class Book {
     @Column(name = "TITLE")
     private String title;
 
+    @ManyToOne(targetEntity = Genre.class, fetch = FetchType.LAZY)
     @Column(name = "GENRE_ID")
-    private Long genreId;
+    private Genre genre;
 
     @Column(name = "EDITION_DATE")
     private Date editionDate;
@@ -29,8 +30,9 @@ public class Book {
     @Column(name = "PRINT_DATE")
     private Date printDate;
 
+    @ManyToOne(targetEntity = Publisher.class, fetch = FetchType.LAZY)
     @Column(name = "PUBLISHER_ID")
-    private Long publisherId;
+    private Publisher publisher;
 
     @Column(name = "PRICE")
     private Long price;
@@ -63,12 +65,12 @@ public class Book {
         this.author = authorId;
     }
 
-    public Long getGenreId() {
-        return genreId;
+    public Genre getGenreId() {
+        return genre;
     }
 
-    public void setGenreId(Long genreId) {
-        this.genreId = genreId;
+    public void setGenreId(Genre genreId) {
+        this.genre = genreId;
     }
 
     public Date getEditionDate() {
@@ -87,12 +89,13 @@ public class Book {
         this.printDate = printDate;
     }
 
-    public Long getPublisherId() {
-        return publisherId;
+    public Publisher getPublisherId() {
+        return publisher;
     }
 
-    public void setPublisherId(Long publisherId) {
-        this.publisherId = publisherId;
+    public void setPublisherId(Publisher publisherId) {
+
+        this.publisher = publisherId;
     }
 
     public Long getPrice() {
