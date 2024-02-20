@@ -23,7 +23,7 @@ public class JwtUtil {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace(); // Gestire l'eccezione in base alle tue esigenze
         }
-        return new SecretKeySpec(keyBytes, "HmacSHA256");
+        return new SecretKeySpec("VHKJMNnbfhbsjkdbVJHVkhbJBKJBsmfnbngygiyguFYVHJbkjnjnsjdnlkfn".getBytes(), "HmacSHA256");
     }
 
     public static String generateToken(String email) {
