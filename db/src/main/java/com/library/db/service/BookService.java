@@ -22,12 +22,8 @@ public class BookService {
     }
 
     public List<Book> getAllBooks(Long authorId, Long genreId, Date editionDate, Date printDate, Long publisherId, Long price, Integer pageNumber, Integer rating) {
-        // Se non ci sono filtri
-        if (Objects.isNull(authorId) && Objects.isNull(genreId) && Objects.isNull(editionDate) && Objects.isNull(printDate) && Objects.isNull(publisherId) && Objects.isNull(price) && Objects.isNull(pageNumber) && Objects.isNull(rating)) {
-            return bookRepository.findAll();
-        } else {
-            return bookRepository.findByAuthorIdAndGenreIdAndEditionDateAndPrintDateAndPublisherIdAndPriceAndPageNumberAndRating(
+
+        return bookRepository.findAuthorsByFilters(
                     authorId, genreId, editionDate, printDate, publisherId, price, pageNumber, rating);
-        }
     }
 }

@@ -13,8 +13,9 @@ public class Book {
     @Column(name = "ID")
     private Long id;
 
+    @ManyToOne(targetEntity = Author.class, fetch = FetchType.LAZY)
     @Column(name = "AUTHOR_ID")
-    private Long authorId;
+    private Author author;
 
     @Column(name = "TITLE")
     private String title;
@@ -54,12 +55,12 @@ public class Book {
         this.id = id;
     }
 
-    public Long getAuthorId() {
-        return authorId;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
+    public void setAuthorId(Author authorId) {
+        this.author = authorId;
     }
 
     public Long getGenreId() {
