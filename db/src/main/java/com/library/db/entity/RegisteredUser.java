@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="USERS")
-public class User {
+@Table(name="REGISTERED_USERS")
+public class RegisteredUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +21,6 @@ public class User {
 
     @Column(name = "DATE_OF_REGISTRATION")
     private LocalDateTime dateOfRegistration;
-
-    @Column(name = "PREFERRED_GENRES")
-    private Long preferredGenres;
 
     public Long getId() {
         return id;
@@ -57,11 +54,4 @@ public class User {
         this.dateOfRegistration = dateOfRegistration;
     }
 
-    public Long getPreferredGenres() {
-        return preferredGenres;
-    }
-
-    public void setPreferredGenres(Long preferredGenres) {
-        this.preferredGenres = preferredGenres;
-    }
 }
