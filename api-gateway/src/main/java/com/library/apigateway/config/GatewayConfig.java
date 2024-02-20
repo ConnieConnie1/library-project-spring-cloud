@@ -18,8 +18,9 @@ public class GatewayConfig {
         // adding 2 rotes to first microservice as we need to log request body if method is POST
         return builder.routes()
                 .route("author-microservice:8085",r -> r.path("/api/authors/**")
-                        .and().method("GET")
-                        .and().readBody(AuthorRecord.class, s -> true).filters(f -> f.filters(authFilter))
+                        .filters(f -> f.filter(authFilter))
+                       // .and().method("GET")
+                       // .and().readBody(AuthorRecord.class, s -> true).filters(f -> f.filters(authFilter))
                         .uri("lb://AUTHOR-MICROSERVICE"))
                 .build();
     }
