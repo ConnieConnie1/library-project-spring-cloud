@@ -16,8 +16,12 @@ public class AuthorController {
     @Autowired
     private AuthorService authorService;
     @GetMapping("")
-    public List<AuthorRecord> getAllAuthors(){
-        return authorService.getAllAuthors();
+    public List<AuthorRecord> getAllAuthors(
+            @RequestParam(required = false) String name,
+            @RequestParam (required = false) String surname,
+            @RequestParam (required = false) Long genreId
+    ){
+        return authorService.getAllAuthors(name, surname,genreId);
     }
     @GetMapping("/{id}")
     public Response getAuthorById(@PathVariable Long id) {

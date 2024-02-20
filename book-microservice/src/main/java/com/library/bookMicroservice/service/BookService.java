@@ -64,7 +64,7 @@ public class BookService {
         }
 
         ResponseEntity<List<Book>> response = restTemplate.exchange(
-                url,  // Utilizza l'URL costruito
+                url,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Book>>() {

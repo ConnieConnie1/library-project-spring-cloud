@@ -23,9 +23,32 @@ public class AuthorService {
     @Autowired
     private DiscoveryClient discoveryClient;
 
-    public List<AuthorRecord> getAllAuthors(){
+    public List<AuthorRecord> getAllAuthors(String name, String surname, Long genreId){
         String databaseServiceUrl = discoveryClient.getInstances("db-microservice").get(0).getUri().toString();
-        String url = databaseServiceUrl +"/api/db/author";
+        String url = databaseServiceUrl +"/api/db/author?";
+        if (name != null || surname != null || genreId != null) {
+            url += "?";
+            boolean isFirstParam = true; // Aggiunto un flag per gestire il primo parametro
+            if (name != null) {
+                url += "name=" + name;
+                isFirstParam = false;
+            }
+            if (surname != null) {
+                if (!isFirstParam) {
+                    url += "&"; // Aggiunge il separatore solo se non è il primo parametro
+                }
+                url += "surname=" + surname;
+                isFirstParam = false;
+            }
+            if (genreId != null) {
+                if (!isFirstParam) {
+                    url += "&"; // Aggiunge il separatore solo se non è il primo parametro
+                }
+                url += "genreId=" + genreId;
+            }
+        }
+
+
         ResponseEntity<List<Author>> response = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
