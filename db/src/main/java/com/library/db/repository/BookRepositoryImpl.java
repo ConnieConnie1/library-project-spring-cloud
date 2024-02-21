@@ -44,7 +44,7 @@ public class BookRepositoryImpl implements BookCustomRepository{
         Root<Book> rootCount = cqCount.from(Book.class);
         List <Predicate> predicateCount = getPredicates(rootCount, cb, authorId, genreId, editionDate, printDate, publisherId, price, pageNumber, rating);
         cqCount.select(cb.count(rootCount));
-        cqCount.where(predicates.stream().toArray(Predicate[]::new));
+        cqCount.where(predicateCount.stream().toArray(Predicate[]::new));
         Long bookCount = em.createQuery(cqCount).getSingleResult();
 
         int totalPage = (int)Math.ceil((double)bookCount/pageable.getPageSize());

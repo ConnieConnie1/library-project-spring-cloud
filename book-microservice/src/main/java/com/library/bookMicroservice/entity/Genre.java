@@ -1,4 +1,4 @@
-package com.library.db.entity;
+package com.library.bookMicroservice.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

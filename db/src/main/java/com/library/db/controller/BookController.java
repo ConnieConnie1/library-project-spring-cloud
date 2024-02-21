@@ -27,8 +27,8 @@ public class BookController {
             @RequestParam(required = false) Long price,
             @RequestParam(required = false) Integer pageNumber,
             @RequestParam(required = false) Integer rating,
-            @RequestParam(required = false, defaultValue = "10") Integer pageSize,
-            @RequestParam(required = false, defaultValue = "1") Integer currentPage
+            @RequestParam(required = false) Integer pageSize,
+            @RequestParam(required = false) Integer currentPage
 
     ){
         return bookService.getAllBooks(authorId, genreId, editionDate, printDate, publisherId, price, pageNumber, rating, pageSize,currentPage);

@@ -26,7 +26,8 @@ public class BookService {
     public PaginationResponse<Book> getAllBooks(Long authorId, Long genreId, Date editionDate, Date printDate, Long publisherId, Long price, Integer pageNumber, Integer rating, Integer pageSize, Integer currentPage) {
 
         Pageable pageable = PageRequest.of(currentPage, pageSize);
-        return bookRepository.findBooksByFilter(
-                    pageable, authorId, genreId, editionDate, printDate, publisherId, price, pageNumber, rating);
+        PaginationResponse<Book> response = bookRepository.findBooksByFilter(
+                pageable, authorId, genreId, editionDate, printDate, publisherId, price, pageNumber, rating);
+        return response;
     }
 }

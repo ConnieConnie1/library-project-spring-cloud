@@ -1,5 +1,6 @@
 package com.library.bookMicroservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -7,20 +8,23 @@ import java.util.Date;
 
 @Entity
 @Table(name="BOOK")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "AUTHOR_ID")
-    private Long authorId;
+    @ManyToOne(targetEntity = Author.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "AUTHOR_ID")
+    private Author author;
 
     @Column(name = "TITLE")
     private String title;
 
-    @Column(name = "GENRE_ID")
-    private Long genreId;
+    @ManyToOne(targetEntity = Genre.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "GENRE_ID")
+    private Genre genre;
 
     @Column(name = "EDITION_DATE")
     private Date editionDate;
@@ -28,8 +32,9 @@ public class Book {
     @Column(name = "PRINT_DATE")
     private Date printDate;
 
-    @Column(name = "PUBLISHER_ID")
-    private Long publisherId;
+    @ManyToOne(targetEntity = Publisher.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "PUBLISHER_ID")
+    private Publisher publisher;
 
     @Column(name = "PRICE")
     private Long price;
@@ -54,20 +59,20 @@ public class Book {
         this.id = id;
     }
 
-    public Long getAuthorId() {
-        return authorId;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
+    public void setAuthorId(Author authorId) {
+        this.author = authorId;
     }
 
-    public Long getGenreId() {
-        return genreId;
+    public Genre getGenreId() {
+        return genre;
     }
 
-    public void setGenreId(Long genreId) {
-        this.genreId = genreId;
+    public void setGenreId(Genre genreId) {
+        this.genre = genreId;
     }
 
     public Date getEditionDate() {
@@ -86,12 +91,13 @@ public class Book {
         this.printDate = printDate;
     }
 
-    public Long getPublisherId() {
-        return publisherId;
+    public Publisher getPublisherId() {
+        return publisher;
     }
 
-    public void setPublisherId(Long publisherId) {
-        this.publisherId = publisherId;
+    public void setPublisherId(Publisher publisherId) {
+
+        this.publisher = publisherId;
     }
 
     public Long getPrice() {
@@ -132,5 +138,33 @@ public class Book {
 
     public void setRating(Integer rating) {
         this.rating = rating;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 }
