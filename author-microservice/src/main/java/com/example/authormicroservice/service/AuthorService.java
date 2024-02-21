@@ -14,6 +14,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -29,38 +30,31 @@ public class AuthorService {
     @Autowired
     private DiscoveryClient discoveryClient;
 
-    public PaginationResponse<AuthorRecord> getAllAuthors(Long id, String name, String surname, Long genreId, String biography, List<Long> bookIds, Integer pageSize, Integer currentPage){
+    public PaginationResponse<AuthorRecord> getAllAuthors( String name, String surname, Integer pageSize, Integer currentPage) {
         String databaseServiceUrl = discoveryClient.getInstances("db-microservice").get(0).getUri().toString();
-        String url = databaseServiceUrl +"/api/db/author";
-        if (isParameterPresent(id, name, surname, genreId, biography, bookIds, pageSize, currentPage)) {
+        String url = databaseServiceUrl + "/api/db/author";
+        if (isParameterPresent(name, surname,  pageSize, currentPage)) {
             url += "?";
-            boolean isFirstParam = true; // Aggiunto un flag per gestire il primo parametro
-            if (id != null) {
-                url += "id=" + id;
-            }
+        }
+        boolean isFirstParam = true; // Aggiunto un flag per gestire il primo parametro
 
-            if (name != null) {
-                url += "&name=" + name;
-            }
 
-            if (surname != null) {
-                url += "&surname=" + surname;
-            }
+        if (name != null) {
+            url += "&name=" + name;
+        }
 
-            if (genreId != null) {
-                url += "&genreId=" + genreId;
-            }
+        if (surname != null) {
+            url += "&surname=" + surname;
+        }
 
-            if (biography != null) {
-                url += "&biography=" + biography;
-            }
 
-            if (bookIds != null) {
-                for (Long bookId : bookIds) {
-                    url += "&bookIds=" + bookId;
-                }
-            }
+        if (pageSize != null) {
 
+            url += "&pageSize=" + pageSize;
+        }
+        if (currentPage != null) {
+
+            url += "&currentPage=" + currentPage;
         }
 
 
@@ -68,7 +62,8 @@ public class AuthorService {
                 url,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<PaginationResponse<Author>>() {}
+                new ParameterizedTypeReference<PaginationResponse<Author>>() {
+                }
         );
         List<Author> authors = response.getBody().getData();
         PaginationResponse<AuthorRecord> result = new PaginationResponse<AuthorRecord>();
@@ -76,29 +71,30 @@ public class AuthorService {
         result.setTotalPage(response.getBody().getTotalPage());
 
 
-            List<AuthorRecord> data = authors.stream()
-                    .map(author -> new AuthorRecord(
-                            author.getId(),
-                            author.getName(),
-                            author.getSurname(),
-                            author.getGenreId(),
-                            author.getBiography()))
-                    .collect(Collectors.toList());
-            result.setData(data);
+        List<AuthorRecord> data = authors.stream()
+                .map(author -> new AuthorRecord(
+                        author.getId(),
+                        author.getName(),
+                        author.getSurname(),
+                        author.getGenreId(),
+                        author.getBiography()))
+                .collect(Collectors.toList());
+        result.setData(data);
         return result;
     }
-    public AuthorRecord getAuthorById(Long id){
+
+    public AuthorRecord getAuthorById(Long id) {
         String databaseServiceUrl = discoveryClient.getInstances("db-microservice").get(0).getUri().toString();
         ResponseEntity<Author> response = restTemplate.getForEntity(databaseServiceUrl + "/api/db/author/" + id, Author.class);
         Author author = response.getBody();
-        if(Objects.nonNull(author)){
+        if (Objects.nonNull(author)) {
             return new AuthorRecord(author.getId(), author.getName(), author.getSurname(), author.getGenreId(), author.getBiography());
         }
         return null;
     }
 
-    public boolean isParameterPresent(Long id, String name, String surname, Long genreId, String biography, List<Long> bookIds, Integer pageSize, Integer currentPage) {
-        return id != null || name != null || surname != null || genreId != null || biography != null || (bookIds != null && !bookIds.isEmpty()) || pageSize != null || currentPage != null;
+    public boolean isParameterPresent(String name, String surname,  Integer pageSize, Integer currentPage) {
+        return  name != null || surname != null || pageSize != null || currentPage != null;
     }
 
 }

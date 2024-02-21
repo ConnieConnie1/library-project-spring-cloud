@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface AuthorCustomRepository {
 
-    PaginationResponse<Author> findAuthorByFilter (Pageable pageable, Long id, String name, String surname, Long genreId, String biography, List<Book> book);
+    PaginationResponse<Author> findAuthorByFilter (Pageable pageable, String name, String surname);
 
 
 }

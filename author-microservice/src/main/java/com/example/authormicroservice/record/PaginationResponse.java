@@ -4,8 +4,8 @@ import java.util.List;
 
 public class PaginationResponse<T> {
     private List<T> data;
-    private int totalPage;
-    private int currentPage;
+    private Integer totalPage;
+    private Integer currentPage;
 
     public List<T> getData() {
         return data;

@@ -27,12 +27,12 @@ public class BookController {
 
     @GetMapping("")
     public Response getAllBooks(
-
-            @RequestParam(required = false) Long authorId,
-            @RequestParam(required = false) Long genreId,
+            @RequestParam(required = false) String authorName,
+            @RequestParam(required = false) String authorSurname,
+            @RequestParam(required = false) String genre,
             @RequestParam(required = false) Date editionDate,
             @RequestParam(required = false) Date printDate,
-            @RequestParam(required = false) Long publisherId,
+            @RequestParam(required = false) String publisherName,
             @RequestParam(required = false) Long price,
             @RequestParam(required = false) Integer pageNumber,
             @RequestParam(required = false) Integer rating,
@@ -47,7 +47,7 @@ public class BookController {
         }
         return Response.ok(response).build();
              */
-        PaginationResponse<BookRecord> responseBooks =  bookService.getAllBooks(authorId, genreId, editionDate, printDate, publisherId, price, pageNumber, rating, pageSize, currentPage);
+        PaginationResponse<BookRecord> responseBooks =  bookService.getAllBooks(authorName, authorSurname, genre, editionDate, printDate, publisherName, price, pageNumber, rating, pageSize, currentPage);
         if (Objects.isNull(responseBooks)) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }

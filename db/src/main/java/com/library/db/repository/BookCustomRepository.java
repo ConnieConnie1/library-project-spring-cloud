@@ -10,5 +10,5 @@ import java.util.List;
 public interface BookCustomRepository {
 
 
-    PaginationResponse<Book> findBooksByFilter(Pageable pageable, Long authorId, Long genreId, Date editionDate, Date printDate, Long publisherId, Long price, Integer pageNumber, Integer rating);
+    PaginationResponse<Book> findBooksByFilter(Pageable pageable,String authorName, String authorSurname, String genre, Date editionDate, Date printDate, String publisherName, Long price, Integer rating);
 }

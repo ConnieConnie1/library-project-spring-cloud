@@ -18,16 +18,12 @@ public class AuthorController {
 
     @GetMapping
     public PaginationResponse<Author> getAllAuthors(
-            @RequestParam(required = false) Long id,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String surname,
-            @RequestParam(required = false) Long genreId,
-            @RequestParam(required = false) String biography,
-            @RequestParam(required = false) List<Book> book,
-            @RequestParam(required = false, defaultValue = "10") Integer pageSize,
-            @RequestParam(required = false, defaultValue = "1") Integer currentPage
+            @RequestParam(required = false) Integer pageSize,
+            @RequestParam(required = false) Integer currentPage
     ){
-        return authorService.getAllAuthors(id, name, surname, genreId, biography, book, pageSize,currentPage);
+        return authorService.getAllAuthors(name, surname, pageSize,currentPage);
     }
 
     @GetMapping("/{authorId}")

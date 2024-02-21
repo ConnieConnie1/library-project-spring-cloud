@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("/author")
+@RequestMapping("")
 public class AuthorController {
 
     @Autowired
@@ -22,16 +22,13 @@ public class AuthorController {
 
     @GetMapping("")
     public Response getAllAuthors(
-            @RequestParam(required = false) Long id,
+
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String surname,
-            @RequestParam(required = false) Long genreId,
-            @RequestParam(required = false) String biography,
-            @RequestParam(required = false) List<Long> bookIds,
-            @RequestParam(required = false) Integer pageSize,
-            @RequestParam(required = false) Integer currentPage
+            @RequestParam(required = false, defaultValue = "10") Integer pageSize,
+            @RequestParam(required = false, defaultValue = "1") Integer currentPage
     ){
-        PaginationResponse<AuthorRecord> responseAuthors =  authorService.getAllAuthors(id, name, surname, genreId, biography, bookIds, pageSize, currentPage);
+        PaginationResponse<AuthorRecord> responseAuthors =  authorService.getAllAuthors(name, surname, pageSize, currentPage);
         if (Objects.isNull(responseAuthors)) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
