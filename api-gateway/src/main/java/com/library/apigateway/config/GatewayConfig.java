@@ -15,6 +15,9 @@ public class GatewayConfig {
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
+                .route("login-microservice:8084",r -> r.path("/api/users/insertUserDetails")
+                        .filters(f -> f.filter(authFilter))
+                        .uri("lb://LOGIN-MICROSERVICE"))
                 .route("author-microservice:8085",r -> r.path("/api/authors/**")
                         .filters(f -> f.filter(authFilter))
                         .uri("lb://AUTHOR-MICROSERVICE"))

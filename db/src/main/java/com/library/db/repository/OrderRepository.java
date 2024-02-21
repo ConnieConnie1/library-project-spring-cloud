@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface OrderRepository  extends JpaRepository<Orders, Long> {
-    @Query("SELECT o FROM Orders o WHERE " +
+    /*@Query("SELECT o FROM Orders o WHERE " +
             "(:bookId IS NULL OR o.bookId = :bookId) " +
             "AND (:userId IS NULL OR o.userId = :userId) " +
             "AND (:bookingDate IS NULL OR o.bookingDate = :bookingDate)")
@@ -17,5 +17,5 @@ public interface OrderRepository  extends JpaRepository<Orders, Long> {
             @Param("bookId") Long bookId,
             @Param("userId") Long userId,
             @Param("bookingDate") Date bookingDate
-    );
+    );*/
 }

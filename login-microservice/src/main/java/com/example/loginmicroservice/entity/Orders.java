@@ -1,8 +1,9 @@
-package com.library.db.entity;
+package com.example.loginmicroservice.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.apache.catalina.User;
+
+
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -25,7 +26,7 @@ public class Orders {
     private Set<Book> books;
     @OneToOne(mappedBy = "currentOrder")
     @JsonIgnore
-    private Users user;
+    private User user;
     @Column(name = "ADDRESS")
     private String address;
     @Column(name = "BOOKING_DATE")
@@ -58,11 +59,11 @@ public class Orders {
         this.books = books;
     }
 
-    public Users getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(Users user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
@@ -89,4 +90,6 @@ public class Orders {
     public void setOrderTotal(BigDecimal orderTotal) {
         this.orderTotal = orderTotal;
     }
+
+
 }

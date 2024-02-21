@@ -1,6 +1,5 @@
-package com.library.db.entity;
+package com.example.loginmicroservice.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 

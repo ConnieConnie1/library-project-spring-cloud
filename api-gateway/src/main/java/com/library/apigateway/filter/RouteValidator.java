@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 
 @Component
 public class RouteValidator {
-    public static final List<String> unprotectedURLs = List.of("/users/**");
+    public static final List<String> unprotectedURLs = List.of("/users/registerUser", "/users/login");
 
     public Predicate<ServerHttpRequest> isSecured = request -> unprotectedURLs.stream().noneMatch(uri -> request.getURI().getPath().contains(uri));
 }
