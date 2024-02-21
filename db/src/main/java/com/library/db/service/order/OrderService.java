@@ -1,7 +1,7 @@
-package com.library.db.service;
+package com.library.db.service.order;
 
-import com.library.db.entity.Orders;
-import com.library.db.repository.OrderRepository;
+import com.library.db.entity.order.Orders;
+import com.library.db.repository.order.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

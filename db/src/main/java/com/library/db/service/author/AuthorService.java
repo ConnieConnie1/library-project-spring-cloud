@@ -1,16 +1,14 @@
-package com.library.db.service;
+package com.library.db.service.author;
 
-import com.library.db.entity.Author;
+import com.library.db.entity.author.Author;
 
-import com.library.db.entity.Book;
 import com.library.db.record.PaginationResponse;
-import com.library.db.repository.AuthorRepository;
+import com.library.db.repository.author.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

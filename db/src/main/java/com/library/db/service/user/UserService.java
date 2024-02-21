@@ -1,11 +1,11 @@
-package com.library.db.service;
+package com.library.db.service.user;
 
-import com.library.db.entity.RegisteredUser;
-import com.library.db.entity.Users;
-import com.library.db.record.UserDetailRecord;
-import com.library.db.record.UserRecord;
-import com.library.db.repository.RegisteredUserRepository;
-import com.library.db.repository.UsersRepository;
+import com.library.db.entity.user.RegisteredUser;
+import com.library.db.entity.user.Users;
+import com.library.db.record.user.UserDetailRecord;
+import com.library.db.record.user.UserRecord;
+import com.library.db.repository.user.RegisteredUserRepository;
+import com.library.db.repository.user.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

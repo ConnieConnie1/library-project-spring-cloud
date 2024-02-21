@@ -1,15 +1,14 @@
-package com.library.db.service;
+package com.library.db.service.book;
 
-import com.library.db.entity.Book;
+import com.library.db.entity.book.Book;
 import com.library.db.record.PaginationResponse;
-import com.library.db.repository.BookRepository;
+import com.library.db.repository.book.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 @Service

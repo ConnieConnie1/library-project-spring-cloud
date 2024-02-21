@@ -1,8 +1,8 @@
-package com.library.db.service;
+package com.library.db.service.publisher;
 
 
-import com.library.db.entity.Publisher;
-import com.library.db.repository.PublisherRepository;
+import com.library.db.entity.publisher.Publisher;
+import com.library.db.repository.publisher.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
