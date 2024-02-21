@@ -1,7 +1,7 @@
 package com.example.loginmicroservice.service;
 
-import com.example.loginmicroservice.entity.RegisteredUser;
-import com.example.loginmicroservice.entity.User;
+import com.example.loginmicroservice.entity.user.RegisteredUser;
+import com.example.loginmicroservice.entity.user.User;
 import com.example.loginmicroservice.record.UserDetailRecord;
 import com.example.loginmicroservice.record.UserRecord;
 import com.example.loginmicroservice.util.JwtUtil;

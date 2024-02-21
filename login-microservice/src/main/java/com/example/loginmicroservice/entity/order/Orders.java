@@ -1,5 +1,7 @@
-package com.example.loginmicroservice.entity;
+package com.example.loginmicroservice.entity.order;
 
+import com.example.loginmicroservice.entity.user.User;
+import com.example.loginmicroservice.entity.book.Book;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 

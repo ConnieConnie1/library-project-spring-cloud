@@ -1,4 +1,4 @@
-package com.example.loginmicroservice.entity;
+package com.example.loginmicroservice.entity.user;
 
 import jakarta.persistence.*;
 

@@ -1,8 +1,8 @@
-package com.example.loginmicroservice.entity;
+package com.example.loginmicroservice.entity.user;
 
+import com.example.loginmicroservice.entity.order.Orders;
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
