@@ -23,7 +23,8 @@ public class BookService {
         return bookRepository.findById(id).isPresent() ? bookRepository.findById(id).get() : null;
     }
 
-    public PaginationResponse<Book> getAllBooks(Long authorId, Long genreId, Date editionDate, Date printDate, Long publisherId, Long price, Integer pageNumber, Integer rating, Integer pageSize, Integer currentPage) {
+    public PaginationResponse<Book> getAllBooks(
+            Long authorId, Long genreId, Date editionDate, Date printDate, Long publisherId, Long price, Integer pageNumber, Integer rating, Integer pageSize, Integer currentPage) {
 
         Pageable pageable = PageRequest.of(currentPage, pageSize);
         PaginationResponse<Book> response = bookRepository.findBooksByFilter(

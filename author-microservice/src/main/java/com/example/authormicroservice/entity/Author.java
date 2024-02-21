@@ -1,9 +1,14 @@
 package com.example.authormicroservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name="AUTHOR")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Author {
 
     @Id
@@ -20,6 +25,10 @@ public class Author {
 
     @Column(name = "BIOGRAPHY")
     private String biography;
+
+    @OneToMany(mappedBy = "author")
+    @JsonIgnore
+    private List<Book> book;
 
     public Long getId() {
         return id;
@@ -59,5 +68,13 @@ public class Author {
 
     public void setBiography(String biography) {
         this.biography = biography;
+    }
+
+    public List<Book> getBook() {
+        return book;
+    }
+
+    public void setBook(List<Book> book) {
+        this.book = book;
     }
 }
