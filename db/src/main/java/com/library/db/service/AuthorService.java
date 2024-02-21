@@ -2,8 +2,12 @@ package com.library.db.service;
 
 import com.library.db.entity.Author;
 
+import com.library.db.entity.Book;
+import com.library.db.record.PaginationResponse;
 import com.library.db.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +24,13 @@ public class AuthorService {
         return authorRepository.findById(id).isPresent() ? authorRepository.findById(id).get() : null;
     }
 
-    public List<Author> getAllAuthors() {
-        return authorRepository.findAll();
+    public PaginationResponse<Author> getAllAuthors(
+            Long id, String name, String surname, Long genreId, String biography, List<Book> book,
+            Integer pageSize, Integer currentPage) {
+        Pageable pageable = PageRequest.of(currentPage, pageSize);
+        PaginationResponse<Author> response = authorRepository.findAuthorByFilter(
+                pageable, id, name, surname, genreId, biography, book);
+        return response;
     }
+
 }
