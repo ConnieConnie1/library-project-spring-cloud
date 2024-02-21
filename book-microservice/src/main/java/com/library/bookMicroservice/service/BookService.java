@@ -30,17 +30,22 @@ public class BookService {
     private DiscoveryClient discoveryClient;
 
     //GetAllBooks
-    public PaginationResponse<BookRecord> getAllBooks(Long authorId, Long genreId, Date editionDate, Date printDate, Long publisherId, Long price, Integer pageNumber, Integer rating, Integer pageSize, Integer currentPage) {
+    public PaginationResponse<BookRecord> getAllBooks(String authorName, String authorSurname, String genre, Date editionDate,
+                                                      Date printDate, String publisherName, Long price, Integer pageNumber,
+                                                      Integer rating, Integer pageSize, Integer currentPage) {
         String databaseServiceUrl = discoveryClient.getInstances("db-microservice").get(0).getUri().toString();
         String url = databaseServiceUrl + "/api/db/book";
-        if (isParameterPresent(authorId, genreId, editionDate, printDate, publisherId, price, pageNumber, rating, pageSize, currentPage)){
+        if (isParameterPresent(authorName, authorSurname, genre, editionDate, printDate, publisherName, price, pageNumber, rating, pageSize, currentPage)){
             url += "?";
         }
-        if (authorId != null) {
-            url += "authorId=" + authorId + "&";
+        if (authorName != null) {
+            url += "authorName=" + authorName + "&";
         }
-        if (genreId != null) {
-            url += "genreId=" + genreId + "&";
+        if (authorSurname != null) {
+            url += "authorSurname=" + authorSurname + "&";
+        }
+        if (genre != null) {
+            url += "genre=" + genre + "&";
         }
         if (editionDate != null) {
             url += "editionDate=" + editionDate.getTime() + "&";
@@ -48,8 +53,8 @@ public class BookService {
         if (printDate != null) {
             url += "printDate=" + printDate.getTime() + "&";
         }
-        if (publisherId != null) {
-            url += "publisherId=" + publisherId + "&";
+        if (publisherName != null) {
+            url += "publisherName=" + publisherName + "&";
         }
         if (price != null) {
             url += "price=" + price + "&";
@@ -113,8 +118,9 @@ public class BookService {
         return null;
     }
 
-    public boolean isParameterPresent(Long authorId, Long genreId, Date editionDate, Date printDate, Long publisherId, Long price, Integer pageNumber, Integer rating, Integer pageSize, Integer currentPage) {
-        if (authorId != null || genreId != null || editionDate != null || printDate != null || publisherId != null || price != null || pageNumber != null || rating != null || pageSize != null || currentPage != null){
+    public boolean isParameterPresent(
+            String authorName, String authorSurname, String genre, Date editionDate, Date printDate, String publisherName, Long price, Integer pageNumber, Integer rating, Integer pageSize, Integer currentPage) {
+        if (authorName != null ||authorSurname != null ||  genre != null || editionDate != null || printDate != null || publisherName != null || price != null || pageNumber != null || rating != null || pageSize != null || currentPage != null){
             return true;
         } return false;
     }

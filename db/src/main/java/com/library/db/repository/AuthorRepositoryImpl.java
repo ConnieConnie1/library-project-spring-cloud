@@ -21,14 +21,14 @@ public class AuthorRepositoryImpl implements AuthorCustomRepository{
     @PersistenceContext
     EntityManager em;
     @Override
-    public PaginationResponse<Author> findAuthorByFilter(Pageable pageable, Long id, String name, String surname, Long genreId, String biography, List<Book> book) {
+    public PaginationResponse<Author> findAuthorByFilter(Pageable pageable, String name, String surname) {
         PaginationResponse<Author> response = new PaginationResponse<Author>();
         final int currentPageNumber = pageable.getPageNumber();
         CriteriaBuilder cb = em.getCriteriaBuilder();
         // Per il autore
         CriteriaQuery<Author> cq = cb.createQuery(Author.class);
         Root<Author> root = cq.from(Author.class);
-        List<Predicate> predicates = getPredicates(root, cb, id, name, surname, genreId, biography, book);
+        List<Predicate> predicates = getPredicates(root, cb,  name, surname);
         cq.where(predicates.stream().toArray(Predicate[]::new));
         cq.orderBy(cb.asc(root.get("name"))); // Ordinati in ordine alfabetico di nome dell'autore
 
@@ -40,7 +40,7 @@ public class AuthorRepositoryImpl implements AuthorCustomRepository{
         // Per la count
         CriteriaQuery <Long> cqCount = cb.createQuery(Long.class);
         Root<Author> rootCount = cqCount.from(Author.class);
-        List <Predicate> predicateCount = getPredicates(root, cb, id, name, surname, genreId, biography,  book);
+        List <Predicate> predicateCount = getPredicates(rootCount, cb, name, surname);
         cqCount.select(cb.count(rootCount));
         cqCount.where(predicateCount.stream().toArray(Predicate[]::new));
         Long authorCount = em.createQuery(cqCount).getSingleResult();
@@ -54,33 +54,15 @@ public class AuthorRepositoryImpl implements AuthorCustomRepository{
         return response;
     }
 
-    private List<Predicate> getPredicates(Root<Author> root, CriteriaBuilder cb, Long id, String name, String surname, Long genreId, String biography, List<Book> book){
+    private List<Predicate> getPredicates(Root<Author> root, CriteriaBuilder cb, String name, String surname){
         List<Predicate> predicates = new ArrayList<Predicate>();
 
-
-        if (id != null){
-            predicates.add(cb.equal(root.get("id"), id));
-        }
         if (name != null){
-            predicates.add(cb.equal(root.get("name"), name));
+            predicates.add(cb.like(root.get("name"), name));
         }
         if (surname != null){
-            predicates.add(cb.equal(root.get("surname"), surname));
+            predicates.add(cb.like(root.get("surname"), surname));
         }
-        if (genreId != null) {
-            Join<Author, Genre> joinGenre = root.join("genre");
-            predicates.add(cb.equal(joinGenre.get("id"), genreId));
-        }
-        if (biography != null) {
-            predicates.add(cb.equal(root.get("biography"), biography));
-
-            if (book != null && !book.isEmpty()) {
-                Join<Author, Book> joinBook = root.join("book");
-                predicates.add(joinBook.in(book));
-            }
-        }
-
-
 
         return predicates;
     }

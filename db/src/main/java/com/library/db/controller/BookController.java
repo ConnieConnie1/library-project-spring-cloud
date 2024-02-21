@@ -19,11 +19,12 @@ public class BookController {
 
     @GetMapping
     public PaginationResponse<Book> getAllBooks(
-            @RequestParam(required = false) Long authorId,
-            @RequestParam(required = false) Long genreId,
-            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date editionDate,
-            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date printDate,
-            @RequestParam(required = false) Long publisherId,
+            @RequestParam(required = false) String authorName,
+            @RequestParam(required = false) String authorSurname,
+            @RequestParam(required = false) String genre,
+            @RequestParam(required = false) Date editionDate,
+            @RequestParam(required = false) Date printDate,
+            @RequestParam(required = false) String publisherName,
             @RequestParam(required = false) Long price,
             @RequestParam(required = false) Integer pageNumber,
             @RequestParam(required = false) Integer rating,
@@ -31,7 +32,7 @@ public class BookController {
             @RequestParam(required = false) Integer currentPage
 
     ){
-        return bookService.getAllBooks(authorId, genreId, editionDate, printDate, publisherId, price, pageNumber, rating, pageSize,currentPage);
+        return bookService.getAllBooks(authorName, authorSurname, genre, editionDate, printDate, publisherName, price, pageNumber, rating, pageSize, currentPage);
     }
     @GetMapping("/{bookId}")
     public Book getBookById(@PathVariable("bookId") Long bookId){

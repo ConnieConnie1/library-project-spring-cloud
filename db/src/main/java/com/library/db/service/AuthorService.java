@@ -25,11 +25,10 @@ public class AuthorService {
     }
 
     public PaginationResponse<Author> getAllAuthors(
-            Long id, String name, String surname, Long genreId, String biography, List<Book> book,
-            Integer pageSize, Integer currentPage) {
+            String name, String surname, Integer pageSize, Integer currentPage) {
         Pageable pageable = PageRequest.of(currentPage, pageSize);
         PaginationResponse<Author> response = authorRepository.findAuthorByFilter(
-                pageable, id, name, surname, genreId, biography, book);
+                pageable, name, surname);
         return response;
     }
 
