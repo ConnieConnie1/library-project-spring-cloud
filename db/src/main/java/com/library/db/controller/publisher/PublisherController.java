@@ -1,8 +1,7 @@
-package com.library.db.controller;
+package com.library.db.controller.publisher;
 
 
-import com.library.db.entity.Author;
-import com.library.db.entity.Publisher;
+import com.library.db.entity.publisher.Publisher;
 import com.library.db.record.PaginationResponse;
 import com.library.db.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,10 +1,11 @@
 package com.library.db.service;
 
 
-import com.library.db.entity.Book;
-import com.library.db.entity.Publisher;
+import com.library.db.entity.book.Book;
+import com.library.db.entity.publisher.Publisher;
 import com.library.db.record.PaginationResponse;
-import com.library.db.repository.PublisherRepository;
+import com.library.db.repository.publisher.PublisherRepository;
+import com.library.db.repository.publisher.PublisherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

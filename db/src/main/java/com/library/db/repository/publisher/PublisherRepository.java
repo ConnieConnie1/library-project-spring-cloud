@@ -1,8 +1,9 @@
-package com.library.db.repository;
+package com.library.db.repository.publisher;
 
-import com.library.db.entity.Book;
-import com.library.db.entity.Publisher;
+import com.library.db.entity.book.Book;
+import com.library.db.entity.publisher.Publisher;
 import com.library.db.record.PaginationResponse;
+import com.library.db.repository.PublisherCustomRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
