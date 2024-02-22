@@ -20,7 +20,7 @@ public class LoginController {
     public Response createUser(@RequestBody UserRecord userRecord){
         UserRecord response = loginService.createNewUser(userRecord);
         if (Objects.isNull(response)) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("A problem has been encountered with user registration. Please try again later.").build();
         }
         return Response.ok("User registered successfully").build();
     }

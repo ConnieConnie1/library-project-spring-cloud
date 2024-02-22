@@ -21,7 +21,7 @@ public class OrderController {
     public Response getOrderById(@PathVariable Long id) {
         OrderRecord response = orderService.getOrderById(id);
         if (Objects.isNull(response)) {
-            return Response.status(Response.Status.NOT_FOUND).build();
+            return Response.status(Response.Status.NOT_FOUND).entity("No orders found").build();
         }
         return Response.ok(response).build();
     }
