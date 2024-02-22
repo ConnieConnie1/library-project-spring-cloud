@@ -38,18 +38,9 @@ public class BookController {
             @RequestParam(required = false) Integer rating,
             @RequestParam(required = false, defaultValue = "10") Integer pageSize,
             @RequestParam(required = false, defaultValue = "1") Integer currentPage) {
-
-         /*
-            public Response getBookById(@PathVariable Long id) {
-        BookRecord response = bookService.getBookById(id);
-        if (Objects.isNull(response)) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-        return Response.ok(response).build();
-             */
         PaginationResponse<BookRecord> responseBooks =  bookService.getAllBooks(authorName, authorSurname, genre, editionDate, printDate, publisherName, price, pageNumber, rating, pageSize, currentPage);
         if (Objects.isNull(responseBooks)) {
-            return Response.status(Response.Status.NOT_FOUND).build();
+            return Response.status(Response.Status.NOT_FOUND).entity("No books found!").build();
         }
         return Response.ok(responseBooks).build();
     }
@@ -58,7 +49,7 @@ public class BookController {
     public Response getBookById(@PathVariable Long id) {
         BookRecord response = bookService.getBookById(id);
         if (Objects.isNull(response)) {
-            return Response.status(Response.Status.NOT_FOUND).build();
+            return Response.status(Response.Status.NOT_FOUND).entity("No book found!").build();
         }
         return Response.ok(response).build();
     }

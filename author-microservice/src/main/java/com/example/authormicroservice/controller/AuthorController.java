@@ -30,7 +30,7 @@ public class AuthorController {
     ){
         PaginationResponse<AuthorRecord> responseAuthors =  authorService.getAllAuthors(name, surname, pageSize, currentPage);
         if (Objects.isNull(responseAuthors)) {
-            return Response.status(Response.Status.NOT_FOUND).build();
+            return Response.status(Response.Status.NOT_FOUND).entity("No authors found!").build();
         }
         return Response.ok(responseAuthors).build();
     }
@@ -39,7 +39,7 @@ public class AuthorController {
     public Response getAuthorById(@PathVariable Long id){
         AuthorRecord response = authorService.getAuthorById(id);
         if (Objects.isNull(response)) {
-            return Response.status(Response.Status.NOT_FOUND).build();
+            return Response.status(Response.Status.NOT_FOUND).entity("No author found!").build();
         }
         return Response.ok(response).build();
         }
