@@ -5,10 +5,7 @@ import com.library.ecommerceMicroservice.record.OrderRecord;
 import com.library.ecommerceMicroservice.service.OrderService;
 import jakarta.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -27,5 +24,11 @@ public class OrderController {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
         return Response.ok(response).build();
+    }
+
+    @DeleteMapping("/delete/{orderId}")
+    public Response deleteOrder (@PathVariable("orderId") Long orderId){
+        orderService.deleteOrderById(orderId);
+        return Response.ok("Ordine cancellato con successo").build();
     }
 }

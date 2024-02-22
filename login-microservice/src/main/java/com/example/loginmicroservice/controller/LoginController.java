@@ -1,5 +1,6 @@
 package com.example.loginmicroservice.controller;
 
+import com.example.loginmicroservice.record.UserDetailRecord;
 import com.example.loginmicroservice.record.UserRecord;
 import com.example.loginmicroservice.service.LoginService;
 import jakarta.ws.rs.core.Response;
@@ -31,5 +32,14 @@ public class LoginController {
             return Response.status(Response.Status.BAD_REQUEST).entity("You must register before logging in").build();
         }
         return Response.ok(token).build();
+    }
+
+    @PostMapping("/insertUserDetails")
+    public Response insertUserDetails(@RequestBody UserDetailRecord userRecord, @RequestParam(required = true) Long registeredUserId){
+        UserDetailRecord record = loginService.insertUserDetails(userRecord,registeredUserId);
+        if (null == record) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Found an error while saving data").build();
+        }
+        return Response.ok(record).build();
     }
 }
