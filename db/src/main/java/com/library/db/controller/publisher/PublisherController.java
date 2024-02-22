@@ -17,9 +17,10 @@ public class PublisherController {
     @GetMapping
     public PaginationResponse<Publisher> getAllPublishers(
             @RequestParam(required = false) Integer pageSize,
-            @RequestParam(required = false) Integer currentPage
+            @RequestParam(required = false) Integer currentPage,
+            @RequestParam(required = false) String publisherName
     ){
-        return publisherService.getAllPublishers(pageSize, currentPage);
+        return publisherService.getAllPublishers(pageSize, currentPage, publisherName);
     }
 
     @GetMapping("/{publisherId}")

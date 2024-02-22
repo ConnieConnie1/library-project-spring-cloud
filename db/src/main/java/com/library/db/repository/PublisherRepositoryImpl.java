@@ -1,6 +1,5 @@
 package com.library.db.repository;
 
-import com.library.db.entity.*;
 import com.library.db.entity.publisher.Publisher;
 import com.library.db.record.PaginationResponse;
 import jakarta.persistence.EntityManager;
@@ -10,7 +9,6 @@ import jakarta.persistence.criteria.*;
 import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class PublisherRepositoryImpl implements PublisherCustomRepository {
@@ -19,7 +17,7 @@ public class PublisherRepositoryImpl implements PublisherCustomRepository {
     EntityManager em;
 
     @Override
-    public PaginationResponse<Publisher> findPublisherByFilter(Pageable pageable, Integer pageSize, Integer currentPage) {
+    public PaginationResponse<Publisher> findPublisherByFilter(Pageable pageable, String publisherName) {
         PaginationResponse<Publisher> response = new PaginationResponse<Publisher>();
         final int currentPageNumber = pageable.getPageNumber();
 
@@ -30,7 +28,7 @@ public class PublisherRepositoryImpl implements PublisherCustomRepository {
         List<Predicate> predicates = getPredicates(root, cb);
 
         cq.where(predicates.stream().toArray(Predicate[]::new));
-        cq.orderBy(cb.asc(root.get("name"))); // Ordinati in ordine alfabetico di nome
+        cq.orderBy(cb.asc(root.get("publisherName"))); // Ordinati in ordine alfabetico di nome
 
         TypedQuery<Publisher> query = em.createQuery(cq);
         query.setFirstResult((pageable.getPageNumber()-1)*pageable.getPageSize());

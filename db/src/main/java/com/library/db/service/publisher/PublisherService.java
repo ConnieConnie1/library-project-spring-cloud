@@ -23,11 +23,10 @@ public class PublisherService {
         return publisherRepository.findById(id).isPresent() ? publisherRepository.findById(id).get() : null;
     }
 
-    public PaginationResponse<Publisher> getAllPublishers(Integer pageSize, Integer currentPage) {
-
+    public PaginationResponse<Publisher> getAllPublishers(Integer pageSize, Integer currentPage, String publisherName) {
         Pageable pageable = PageRequest.of(currentPage, pageSize);
         PaginationResponse<Publisher> response = publisherRepository.findPublisherByFilter(
-                pageable, pageSize, currentPage);
+                pageable, publisherName);
         return response;
     }
 }
