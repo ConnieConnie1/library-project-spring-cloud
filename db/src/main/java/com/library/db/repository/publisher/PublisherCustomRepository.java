@@ -1,4 +1,4 @@
-package com.library.db.repository;
+package com.library.db.repository.publisher;
 
 
 import com.library.db.entity.publisher.Publisher;

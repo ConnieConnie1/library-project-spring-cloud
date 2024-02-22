@@ -8,6 +8,5 @@ import java.util.Date;
 
 public interface BookCustomRepository {
 
-
     PaginationResponse<Book> findBooksByFilter(Pageable pageable,String authorName, String authorSurname, String genre, Date editionDate, Date printDate, String publisherName, Long price, Integer rating);
 }

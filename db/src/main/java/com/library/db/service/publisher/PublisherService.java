@@ -1,4 +1,4 @@
-package com.library.db.service;
+package com.library.db.service.publisher;
 
 
 import com.library.db.entity.book.Book;

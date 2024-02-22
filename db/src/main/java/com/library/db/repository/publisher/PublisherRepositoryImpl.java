@@ -1,4 +1,4 @@
-package com.library.db.repository;
+package com.library.db.repository.publisher;
 
 import com.library.db.entity.publisher.Publisher;
 import com.library.db.record.PaginationResponse;
@@ -25,7 +25,7 @@ public class PublisherRepositoryImpl implements PublisherCustomRepository {
         // Per l'editore
         CriteriaQuery<Publisher> cq = cb.createQuery(Publisher.class);
         Root<Publisher> root = cq.from(Publisher.class);
-        List<Predicate> predicates = getPredicates(root, cb);
+        List<Predicate> predicates = getPredicates(root, cb, publisherName);
 
         cq.where(predicates.stream().toArray(Predicate[]::new));
         cq.orderBy(cb.asc(root.get("publisherName"))); // Ordinati in ordine alfabetico di nome
@@ -34,11 +34,11 @@ public class PublisherRepositoryImpl implements PublisherCustomRepository {
         query.setFirstResult((pageable.getPageNumber()-1)*pageable.getPageSize());
         query.setMaxResults(pageable.getPageSize());
         List<Publisher> result = query.getResultList();
-        
+
         // Per la Count
         CriteriaQuery <Long> cqCount = cb.createQuery(Long.class);
         Root<Publisher> rootCount = cqCount.from(Publisher.class);
-        List <Predicate> predicateCount = getPredicates(rootCount, cb);
+        List<Predicate> predicateCount = getPredicates(rootCount, cb, publisherName);
         cqCount.select(cb.count(rootCount));
         cqCount.where(predicateCount.stream().toArray(Predicate[]::new));
         Long publisherCount = em.createQuery(cqCount).getSingleResult();
@@ -52,9 +52,11 @@ public class PublisherRepositoryImpl implements PublisherCustomRepository {
         return response;
     }
 
-    private List<Predicate> getPredicates(Root<Publisher> root, CriteriaBuilder cb){
+    private List<Predicate> getPredicates(Root<Publisher> root, CriteriaBuilder cb, String publisherName){
         List<Predicate> predicates = new ArrayList<Predicate>();
-
+        if (publisherName != null){
+            predicates.add(cb.equal(root.get("publisherName"), publisherName));
+        }
         return predicates;
     }
 }

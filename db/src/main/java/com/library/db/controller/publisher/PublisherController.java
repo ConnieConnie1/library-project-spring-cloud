@@ -3,7 +3,7 @@ package com.library.db.controller.publisher;
 
 import com.library.db.entity.publisher.Publisher;
 import com.library.db.record.PaginationResponse;
-import com.library.db.service.PublisherService;
+import com.library.db.service.publisher.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
