@@ -34,12 +34,9 @@ public class LoginController {
         return Response.ok(token).build();
     }
 
-    @PostMapping("/insertUserDetails")
-    public Response insertUserDetails(@RequestBody UserDetailRecord userRecord, @RequestParam(required = true) Long registeredUserId){
-        UserDetailRecord record = loginService.insertUserDetails(userRecord,registeredUserId);
-        if (null == record) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Found an error while saving data").build();
-        }
-        return Response.ok(record).build();
+    @PutMapping("/modifyUserDetails")
+    public Response modifyUserDetails(@RequestBody UserDetailRecord userRecord){
+        loginService.modifyUserDetails(userRecord);
+        return Response.ok("User details modified successfully").build();
     }
 }

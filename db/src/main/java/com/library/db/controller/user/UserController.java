@@ -25,8 +25,8 @@ public class UserController {
         return userService.getUserByEmailAndPassword(mail, password);
     }
 
-    @PostMapping("/insertUserDetails")
-    public Users insertUserDetails(@RequestBody UserDetailRecord userDetailRecord,@RequestParam(required = true) Long registeredUserId) {
-        return userService.insertUserDetails(userDetailRecord, registeredUserId);
+    @PutMapping("/modifyUserDetails")
+    public void modifyUserDetails(@RequestBody UserDetailRecord userDetailRecord) {
+        userService.modifyUserDetails(userDetailRecord);
     }
 }

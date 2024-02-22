@@ -29,18 +29,23 @@ public class UserService {
         String criptedPassword = encoder.encode(record.password());
         newRegisteredUser.setPassword(criptedPassword);
         newRegisteredUser.setDateOfRegistration(LocalDateTime.now());
-        return  registeredUserRepository.save(newRegisteredUser);
+        RegisteredUser registeredUser =  registeredUserRepository.save(newRegisteredUser);
+        Users user = new Users();
+        user.setRegisteredUserId(registeredUser.getId());
+        user.setEmail(record.email());
+        usersRepository.save(user);
+        return registeredUser;
     }
 
-    public Users insertUserDetails(UserDetailRecord record, Long registeredUserId){
-        Users userDetails = new Users();
-        userDetails.setAddress(record.address());
-        userDetails.setName(record.name());
-        userDetails.setSurname(record.surname());
-        userDetails.setEmail(record.email());
-        userDetails.setDateOfBirth(record.dateOfBirth());
-        userDetails.setRegisteredUserId(registeredUserId);
-        return usersRepository.save(userDetails);
+    public void modifyUserDetails(UserDetailRecord record){
+        Users userDetails = usersRepository.findByRegisteredUserId(record.registeredUserId());
+        if(userDetails != null){
+            userDetails.setAddress(record.address());
+            userDetails.setName(record.name());
+            userDetails.setSurname(record.surname());
+            userDetails.setDateOfBirth(record.dateOfBirth());
+            usersRepository.save(userDetails);
+        }
     }
 
     public RegisteredUser getUserByEmailAndPassword(String email, String password){

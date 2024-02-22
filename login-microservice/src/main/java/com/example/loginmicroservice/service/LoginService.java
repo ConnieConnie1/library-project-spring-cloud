@@ -41,13 +41,8 @@ public class LoginService {
         return null;
     }
 
-    public UserDetailRecord insertUserDetails(UserDetailRecord requestBody, Long registeredUserId){
+    public void modifyUserDetails(UserDetailRecord requestBody){
         String databaseServiceUrl = discoveryClient.getInstances("db-microservice").get(0).getUri().toString();
-        ResponseEntity<User> response = restTemplate.postForEntity(databaseServiceUrl + "/api/db/user/insertUserDetails?registeredUserId=" + registeredUserId, requestBody, User.class);
-        User user = response.getBody();
-        if(Objects.nonNull(user)){
-            return new UserDetailRecord(null,user.getEmail(), user.getName(), user.getSurname(), user.getDateOfBirth(),user.getAddress());
-        }
-        return null;
+        restTemplate.put(databaseServiceUrl + "/api/db/user/modifyUserDetails", requestBody, User.class);
     }
 }

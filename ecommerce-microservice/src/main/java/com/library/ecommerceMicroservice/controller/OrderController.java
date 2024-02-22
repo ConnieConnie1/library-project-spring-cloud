@@ -29,6 +29,6 @@ public class OrderController {
     @DeleteMapping("/delete/{orderId}")
     public Response deleteOrder (@PathVariable("orderId") Long orderId){
         orderService.deleteOrderById(orderId);
-        return Response.ok("Ordine cancellato con successo").build();
+        return Response.ok("Order successfully cancelled").build();
     }
 }
