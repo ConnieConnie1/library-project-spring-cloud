@@ -18,7 +18,6 @@ public class AuthorService {
     private AuthorRepository authorRepository;
 
     public Author getAuthorById(Long id){
-        Optional<Author> author = authorRepository.findById(id);
         return authorRepository.findById(id).isPresent() ? authorRepository.findById(id).get() : null;
     }
 

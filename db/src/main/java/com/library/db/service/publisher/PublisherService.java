@@ -20,7 +20,6 @@ public class PublisherService {
     private PublisherRepository publisherRepository;
 
     public Publisher getPublisherById(Long id){
-        Optional<Publisher> publisher = publisherRepository.findById(id);
         return publisherRepository.findById(id).isPresent() ? publisherRepository.findById(id).get() : null;
     }
 
