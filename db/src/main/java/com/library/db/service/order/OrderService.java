@@ -1,5 +1,6 @@
 package com.library.db.service.order;
 
+import com.library.db.entity.book.Book;
 import com.library.db.entity.order.Orders;
 import com.library.db.repository.order.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +10,16 @@ import java.util.Optional;
 
 @Service
 public class OrderService {
-    private final OrderRepository orderRepository;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
-    }
+    private  OrderRepository orderRepository;
 
-    public Optional<Orders> getOrderById(Long id) {
-        return orderRepository.findById(id);
+
+    public Orders getOrderById(Long id) {
+        return orderRepository.findById(id).isPresent() ? orderRepository.findById(id).get() : null;
+    }
+    
+    public void deleteOrderById(Long id){
+       orderRepository.deleteById(id);
     }
 }

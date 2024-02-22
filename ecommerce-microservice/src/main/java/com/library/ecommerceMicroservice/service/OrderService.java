@@ -28,4 +28,9 @@ public class OrderService {
         }
         return null;
     }
+
+    public void deleteOrderById(Long id){
+        String databaseServiceUrl = discoveryClient.getInstances("db-microservice").get(0).getUri().toString();
+        restTemplate.delete(databaseServiceUrl + "/api/db/order/delete/" + id);
+    }
 }
