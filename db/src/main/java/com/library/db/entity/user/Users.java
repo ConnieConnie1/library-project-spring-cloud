@@ -3,6 +3,7 @@ package com.library.db.entity.user;
 import com.library.db.entity.order.Orders;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -21,9 +22,6 @@ public class Users {
     @Column(name = "SURNAME")
     private String surname;
 
-    @Column(name = "REGISTERED_USER_ID")
-    private Long registeredUserId;
-
     @Column(name = "EMAIL")
     private String email;
 
@@ -40,6 +38,12 @@ public class Users {
     @OneToOne(targetEntity = Orders.class, fetch = FetchType.LAZY)
     @JoinColumn(name = " ID_OF_CURRENT_ORDERS")
     private Orders currentOrder;
+
+    @Column(name = "PASSWORD")
+    private String password;
+
+    @Column(name = "DATE_OF_REGISTRATION")
+    private LocalDateTime dateOfRegistration;
 
     public Long getId() {
         return id;
@@ -105,11 +109,19 @@ public class Users {
         this.currentOrder = currentOrder;
     }
 
-    public Long getRegisteredUserId() {
-        return registeredUserId;
+    public String getPassword() {
+        return password;
     }
 
-    public void setRegisteredUserId(Long registeredUserId) {
-        this.registeredUserId = registeredUserId;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public LocalDateTime getDateOfRegistration() {
+        return dateOfRegistration;
+    }
+
+    public void setDateOfRegistration(LocalDateTime dateOfRegistration) {
+        this.dateOfRegistration = dateOfRegistration;
     }
 }
