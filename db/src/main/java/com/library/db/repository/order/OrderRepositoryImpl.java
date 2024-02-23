@@ -1,22 +1,15 @@
 package com.library.db.repository.order;
 
-import com.library.db.entity.author.Author;
+
 import com.library.db.entity.book.Book;
-import com.library.db.entity.book.Orders;
-import com.library.db.entity.genre.Genre;
 import com.library.db.entity.order.Orders;
-import com.library.db.entity.publisher.Publisher;
-import com.library.db.entity.user.Users;
 import com.library.db.record.PaginationResponse;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.*;
 import org.springframework.data.domain.Pageable;
-
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class OrderRepositoryImpl implements OrderCustomRepository {
