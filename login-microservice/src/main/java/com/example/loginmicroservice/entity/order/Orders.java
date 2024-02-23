@@ -1,6 +1,6 @@
 package com.example.loginmicroservice.entity.order;
 
-import com.example.loginmicroservice.entity.user.User;
+import com.example.loginmicroservice.entity.user.Users;
 import com.example.loginmicroservice.entity.book.Book;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -28,7 +28,7 @@ public class Orders {
     private Set<Book> books;
     @OneToOne(mappedBy = "currentOrder")
     @JsonIgnore
-    private User user;
+    private Users user;
     @Column(name = "ADDRESS")
     private String address;
     @Column(name = "BOOKING_DATE")
@@ -61,11 +61,11 @@ public class Orders {
         this.books = books;
     }
 
-    public User getUser() {
+    public Users getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 

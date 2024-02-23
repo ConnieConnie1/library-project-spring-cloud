@@ -41,4 +41,13 @@ public class LoginController {
         loginService.modifyUserDetails(userRecord);
         return Response.ok("User details modified successfully").build();
     }
+
+    @GetMapping("details/{userId}")
+    public Response getUserDetails(@PathVariable("userId") Long userId){
+        UserDetailRecord response = loginService.getUserDetails(userId);
+        if (Objects.isNull(response)) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("User not found!").build();
+        }
+        return Response.ok(response).build();
+    }
 }

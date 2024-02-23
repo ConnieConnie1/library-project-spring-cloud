@@ -1,6 +1,5 @@
 package com.library.db.controller.user;
 
-import com.library.db.entity.user.RegisteredUser;
 import com.library.db.entity.user.Users;
 import com.library.db.record.user.UserDetailRecord;
 import com.library.db.record.user.UserRecord;
@@ -16,12 +15,12 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/createUser")
-    public RegisteredUser createUser(@RequestBody UserRecord userRecord) {
+    public Users createUser(@RequestBody UserRecord userRecord) {
         return userService.createNewUser(userRecord);
     }
 
     @GetMapping("login")
-    public RegisteredUser login(@RequestParam String mail, @RequestParam String password) {
+    public Users login(@RequestParam String mail, @RequestParam String password) {
         return userService.getUserByEmailAndPassword(mail, password);
     }
 
@@ -29,4 +28,10 @@ public class UserController {
     public void modifyUserDetails(@RequestBody UserDetailRecord userDetailRecord) {
         userService.modifyUserDetails(userDetailRecord);
     }
+
+    @GetMapping("/{userId}")
+    public Users getUserDetails(@PathVariable("userId") Long userId){
+        return userService.getUserDetailsById(userId);
+    }
+
 }
