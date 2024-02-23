@@ -36,7 +36,10 @@ public class LoginService {
         ResponseEntity<RegisteredUser> response = restTemplate.getForEntity(databaseServiceUrl + "/api/db/user/login?mail=" + request.email() + "&password=" + request.password(), RegisteredUser.class);
         RegisteredUser user = response.getBody();
         if(Objects.nonNull(user)){
-            return JwtUtil.generateToken(request.email());
+            if(user.getPassword() != null) {
+                return JwtUtil.generateToken(request.email());
+            }
+            return "Wrong credentials. Please try again!";
         }
         return null;
     }

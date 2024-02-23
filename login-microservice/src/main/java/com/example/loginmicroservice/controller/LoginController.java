@@ -30,6 +30,8 @@ public class LoginController {
         String token = loginService.login(userRecord);
         if (null == token) {
             return Response.status(Response.Status.BAD_REQUEST).entity("You must register before logging in").build();
+        } else if(token.contains("credentials")){
+            return Response.status(Response.Status.BAD_REQUEST).entity("Wrong credentials. Please try again!").build();
         }
         return Response.ok(token).build();
     }
