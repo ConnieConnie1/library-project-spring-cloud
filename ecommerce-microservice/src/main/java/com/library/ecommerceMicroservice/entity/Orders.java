@@ -1,28 +1,37 @@
 package com.library.ecommerceMicroservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
+@Table(name="ORDERS")
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
     private Long id;
-    @Column(name = "ORDER_NUMBER")
+    @Column(name = " ORDER_NUMBER")
     private Integer orderNumber;
-    @Column(name = "BOOK_ID")
-    private Long bookId;
-    @Column(name = "USER_ID")
-    private Long userId;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "BOOK_ORDERS", // Questo dovrebbe essere il nome della tabella di collegamento
+            joinColumns = @JoinColumn(name = "ORDER_ID"), // Questa dovrebbe essere la colonna nella tabella di collegamento che fa riferimento all'ID dell'ordine
+            inverseJoinColumns = @JoinColumn(name = "BOOK_ID") // Questa dovrebbe essere la colonna nella tabella di collegamento che fa riferimento all'ID del libro
+    )
+    private Set<Book> books;
+    @OneToOne(mappedBy = "currentOrder")
+    @JsonIgnore
+    private Users user;
     @Column(name = "ADDRESS")
     private String address;
     @Column(name = "BOOKING_DATE")
     private Date bookingDate;
     @Column(name = "ORDER_TOTAL")
     private BigDecimal orderTotal;
+
 
     public Long getId() {
         return id;
@@ -40,20 +49,20 @@ public class Orders {
         this.orderNumber = orderNumber;
     }
 
-    public Long getBookId() {
-        return bookId;
+    public Set<Book> getBooks() {
+        return books;
     }
 
-    public void setBookId(Long bookId) {
-        this.bookId = bookId;
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Users getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(Users user) {
+        this.user = user;
     }
 
     public String getAddress() {
