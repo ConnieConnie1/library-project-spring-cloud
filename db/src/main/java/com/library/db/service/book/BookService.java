@@ -23,7 +23,6 @@ public class BookService {
 
     public PaginationResponse<Book> getAllBooks(
             String authorName, String authorSurname, String genre, Date editionDate, Date printDate, String publisherName, Long price, Integer pageNumber, Integer rating, Integer pageSize, Integer currentPage) {
-
         Pageable pageable = PageRequest.of(currentPage, pageSize);
         PaginationResponse<Book> response = bookRepository.findBooksByFilter(
                 pageable, authorName, authorSurname, genre, editionDate, printDate, publisherName, price, rating);
