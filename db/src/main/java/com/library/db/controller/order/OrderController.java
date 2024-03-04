@@ -18,7 +18,7 @@ public class OrderController {
     @GetMapping
     PaginationResponse<Orders> getAllOrders(
             @RequestParam(required = false) Integer orderNumber,
-            @RequestParam(required = true) Long userId,
+            @RequestParam(required = false) Long userId,
             @RequestParam(required = false) Integer currentPage,
             @RequestParam(required = false) Integer pageSize) {
         return orderService.getAllOrders(orderNumber, userId, currentPage, pageSize);

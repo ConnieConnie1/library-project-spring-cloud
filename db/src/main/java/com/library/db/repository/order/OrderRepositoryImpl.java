@@ -3,6 +3,7 @@ package com.library.db.repository.order;
 
 import com.library.db.entity.book.Book;
 import com.library.db.entity.order.Orders;
+import com.library.db.entity.user.Users;
 import com.library.db.record.PaginationResponse;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -56,13 +57,15 @@ public class OrderRepositoryImpl implements OrderCustomRepository {
     private List<Predicate> getPredicates(CriteriaBuilder cb, Root<Orders> root, Integer orderNumber, Long userId) {
         List<Predicate> predicates = new ArrayList<>();
         Join<Orders, Book> bookJoin = root.join("books");
+        Join<Orders, Users> userJoin = root.join("user");
+
 
         if (orderNumber != null) {
             predicates.add(cb.equal(root.get("orderNumber"), orderNumber));
         }
 
         if (userId != null) {
-            predicates.add(cb.equal(bookJoin.get("userId"), userId));
+            predicates.add(cb.equal(userJoin.get("id"), userId));
         }
         return predicates;
 
