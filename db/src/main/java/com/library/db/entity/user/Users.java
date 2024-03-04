@@ -1,5 +1,6 @@
 package com.library.db.entity.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.library.db.entity.order.Orders;
 import jakarta.persistence.*;
 
@@ -37,6 +38,7 @@ public class Users {
 
     @OneToOne(targetEntity = Orders.class, fetch = FetchType.LAZY)
     @JoinColumn(name = " ID_OF_CURRENT_ORDERS")
+    @JsonIgnore
     private Orders currentOrder;
 
     @Column(name = "PASSWORD")

@@ -6,4 +6,6 @@ import org.springframework.data.domain.Pageable;
 
 public interface OrderCustomRepository {
     PaginationResponse<Orders> findOrdersByFilter(Pageable pageable,Integer orderNumber, Long userId);
+
+    Orders findOrderById(Long id);
 }

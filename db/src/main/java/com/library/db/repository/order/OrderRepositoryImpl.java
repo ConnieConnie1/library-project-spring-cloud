@@ -2,6 +2,7 @@ package com.library.db.repository.order;
 
 
 import com.library.db.entity.book.Book;
+import com.library.db.entity.book.BookOrder;
 import com.library.db.entity.order.Orders;
 import com.library.db.record.PaginationResponse;
 import jakarta.persistence.EntityManager;
@@ -51,6 +52,21 @@ public class OrderRepositoryImpl implements OrderCustomRepository {
         response.setCurrentPage(currentPageNumber);
 
         return response;
+    }
+
+    @Override
+    public Orders findOrderById(Long id) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Orders> cq = cb.createQuery(Orders.class);
+        Root<Orders> root = cq.from(Orders.class);
+        List<Predicate> predicates = new ArrayList<>();
+        predicates.add(cb.equal(root.get("id"), id));
+        root.join("user");
+        Join<Orders, BookOrder> joinBookOrder = root.join("books");
+        joinBookOrder.join("orders");
+        cq.where(predicates.stream().toArray(Predicate[]::new));
+        TypedQuery<Orders> query = em.createQuery(cq);
+        return query.getSingleResult();
     }
 
     private List<Predicate> getPredicates(CriteriaBuilder cb, Root<Orders> root, Integer orderNumber, Long userId) {

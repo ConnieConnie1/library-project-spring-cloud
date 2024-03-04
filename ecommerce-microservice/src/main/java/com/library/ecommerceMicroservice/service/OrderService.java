@@ -63,7 +63,7 @@ public class OrderService {
             order.getBooks().forEach(book ->{
                 books.add(new BookRecord(book.getId(), book.getTitle(), book.getAuthor().getName(), book.getAuthor().getSurname(), book.getGenre().getGenre(), book.getEditionDate(), book.getPrintDate(), book.getPublisher().getPublisherName(), book.getPrice(), book.getEan(), book.getPageNumber(), book.getSynopsis(), book.getRating()));
             });
-            return new OrderRecord(order.getId(), order.getOrderNumber(), books, order.getUser().getId(), order.getAddress(), order.getBookingDate(),order.getOrderTotal());
+            return new OrderRecord(order.getId(), order.getOrderNumber(), books, order.getUser().getEmail(), order.getUser().getName(),order.getUser().getSurname(), order.getAddress(), order.getBookingDate(),order.getOrderTotal());
         }
         return null;
     }

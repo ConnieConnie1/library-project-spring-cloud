@@ -1,5 +1,6 @@
 package com.library.ecommerceMicroservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
@@ -53,6 +54,7 @@ public class Book {
     private Integer rating;
 
     @ManyToMany(mappedBy = "books", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Orders> orders;
 
     public Long getId() {

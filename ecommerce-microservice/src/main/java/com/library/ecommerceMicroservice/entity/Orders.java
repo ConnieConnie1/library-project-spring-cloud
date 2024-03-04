@@ -23,7 +23,6 @@ public class Orders {
     )
     private Set<Book> books;
     @OneToOne(mappedBy = "currentOrder")
-    @JsonIgnore
     private Users user;
     @Column(name = "ADDRESS")
     private String address;

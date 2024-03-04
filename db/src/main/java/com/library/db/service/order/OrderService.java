@@ -19,7 +19,8 @@ public class OrderService {
 
 
     public Orders getOrderById(Long id) {
-        return orderRepository.findById(id).isPresent() ? orderRepository.findById(id).get() : null;
+        Orders order = orderRepository.findOrderById(id);
+        return order;
     }
     
     public void deleteOrderById(Long id){

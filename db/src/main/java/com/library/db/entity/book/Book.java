@@ -1,5 +1,6 @@
 package com.library.db.entity.book;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.library.db.entity.genre.Genre;
 import com.library.db.entity.order.Orders;
@@ -57,6 +58,7 @@ public class Book {
     private Integer rating;
 
     @ManyToMany(mappedBy = "books", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Orders> orders;
 
     public Long getId() {
