@@ -1,6 +1,7 @@
 package com.library.db.entity.order;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.library.db.entity.user.Users;
 import com.library.db.entity.book.Book;
 import jakarta.persistence.*;
@@ -25,7 +26,6 @@ public class Orders {
     )
     private Set<Book> books;
     @OneToOne(mappedBy = "currentOrder")
-    @JsonIgnore
     private Users user;
     @Column(name = "ADDRESS")
     private String address;

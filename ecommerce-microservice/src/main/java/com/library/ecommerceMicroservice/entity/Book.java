@@ -1,11 +1,7 @@
-package com.library.db.entity.book;
+package com.library.ecommerceMicroservice.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.library.db.entity.genre.Genre;
-import com.library.db.entity.order.Orders;
-import com.library.db.entity.publisher.Publisher;
-import com.library.db.entity.author.Author;
 import jakarta.persistence.*;
 
 import java.util.Date;

@@ -1,7 +1,5 @@
-package com.library.db.entity.user;
+package com.library.ecommerceMicroservice.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.library.db.entity.order.Orders;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -38,7 +36,6 @@ public class Users {
 
     @OneToOne(targetEntity = Orders.class, fetch = FetchType.LAZY)
     @JoinColumn(name = " ID_OF_CURRENT_ORDERS")
-    @JsonIgnore
     private Orders currentOrder;
 
     @Column(name = "PASSWORD")
