@@ -1,6 +1,5 @@
 package com.library.ecommerceMicroservice.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -22,7 +21,8 @@ public class Orders {
             inverseJoinColumns = @JoinColumn(name = "BOOK_ID") // Questa dovrebbe essere la colonna nella tabella di collegamento che fa riferimento all'ID del libro
     )
     private Set<Book> books;
-    @OneToOne(mappedBy = "currentOrder")
+    @ManyToOne(targetEntity = Users.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID")
     private Users user;
     @Column(name = "ADDRESS")
     private String address;
@@ -30,6 +30,9 @@ public class Orders {
     private Date bookingDate;
     @Column(name = "ORDER_TOTAL")
     private BigDecimal orderTotal;
+
+    @Column(name = "CURRENT_ORDER")
+    private Boolean currentOrder;
 
 
     public Long getId() {
@@ -56,14 +59,6 @@ public class Orders {
         this.books = books;
     }
 
-    public Users getUser() {
-        return user;
-    }
-
-    public void setUser(Users user) {
-        this.user = user;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -86,5 +81,21 @@ public class Orders {
 
     public void setOrderTotal(BigDecimal orderTotal) {
         this.orderTotal = orderTotal;
+    }
+
+    public Boolean getCurrentOrder() {
+        return currentOrder;
+    }
+
+    public void setCurrentOrder(Boolean currentOrder) {
+        this.currentOrder = currentOrder;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 }

@@ -60,9 +60,9 @@ public class OrderRepositoryImpl implements OrderCustomRepository {
         CriteriaQuery<Orders> cq = cb.createQuery(Orders.class);
         Root<Orders> root = cq.from(Orders.class);
         List<Predicate> predicates = new ArrayList<>();
-        predicates.add(cb.equal(root.get("id"), id));
-        root.join("user");
         Join<Orders, BookOrder> joinBookOrder = root.join("books");
+        predicates.add(cb.equal(root.get("currentOrder"), true));
+        predicates.add(cb.equal(root.get("id"), id));
         joinBookOrder.join("orders");
         cq.where(predicates.stream().toArray(Predicate[]::new));
         TypedQuery<Orders> query = em.createQuery(cq);
