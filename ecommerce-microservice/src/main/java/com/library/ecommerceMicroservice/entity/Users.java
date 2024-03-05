@@ -104,7 +104,7 @@ public class Users {
         return currentOrder;
     }
 
-    public void setCurrentOrder(Orders currentOrder) {
+    public void setCurrentOrder(Long currentOrder) {
         this.currentOrder = currentOrder;
     }
 

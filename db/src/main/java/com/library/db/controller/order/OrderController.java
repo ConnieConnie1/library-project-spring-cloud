@@ -18,10 +18,10 @@ public class OrderController {
     @GetMapping
     PaginationResponse<Orders> getAllOrders(
             @RequestParam(required = false) Integer orderNumber,
-            @RequestParam(required = false) Long userId,
+            @RequestParam(required = false) String mail,
             @RequestParam(required = false) Integer currentPage,
             @RequestParam(required = false) Integer pageSize) {
-        return orderService.getAllOrders(orderNumber, userId, currentPage, pageSize);
+        return orderService.getAllOrders(orderNumber, mail, currentPage, pageSize);
     }
 
     @GetMapping("/{orderId}")
