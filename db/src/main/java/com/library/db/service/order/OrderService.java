@@ -2,11 +2,15 @@ package com.library.db.service.order;
 
 import com.library.db.entity.order.Orders;
 import com.library.db.record.PaginationResponse;
+import com.library.db.record.order.OrderRecord;
 import com.library.db.repository.order.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.Date;
 
 @Service
 public class OrderService {
@@ -30,15 +34,15 @@ public class OrderService {
         return response;
     }
 
-    /*
-    public Users createNewUser(UserRecord record) {
-        Users user = new Users();
-        user.setEmail(record.email());
-        String criptedPassword = encoder.encode(record.password());
-        user.setPassword(criptedPassword);
-        user.setDateOfRegistration(LocalDateTime.now());
-        usersRepository.save(user);
-        return user;
+    public Orders createNewOrder (OrderRecord orderRecord){
+        Orders order = new Orders();
+        order.setOrderNumber(order.getOrderNumber());
+        order.setId(order.getId());
+        // order.setBookingDate(LocalDate.now());
+        order.setOrderTotal(order.getOrderTotal());
+        order.setAddress(order.getAddress());
+        orderRepository.save(order);
+        return order;
     }
-     */
+
 }

@@ -2,6 +2,7 @@ package com.library.db.controller.order;
 
 import com.library.db.entity.order.Orders;
 import com.library.db.record.PaginationResponse;
+import com.library.db.record.order.OrderRecord;
 import com.library.db.service.order.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,6 @@ public class OrderController {
     }
 
     @PostMapping("/new")
-    public Orders createOrder(@RequestBody OrderRecord orderRecord)j{ return orderService.createNewOrder(orderRecord);}
+    public Orders createOrder(@RequestBody OrderRecord orderRecord){ return orderService.createNewOrder(orderRecord);}
 }
 
