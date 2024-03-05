@@ -29,4 +29,16 @@ public class OrderService {
         PaginationResponse<Orders> response = orderRepository.findOrdersByFilter(pageable, orderNumber, mail);
         return response;
     }
+
+    /*
+    public Users createNewUser(UserRecord record) {
+        Users user = new Users();
+        user.setEmail(record.email());
+        String criptedPassword = encoder.encode(record.password());
+        user.setPassword(criptedPassword);
+        user.setDateOfRegistration(LocalDateTime.now());
+        usersRepository.save(user);
+        return user;
+    }
+     */
 }
