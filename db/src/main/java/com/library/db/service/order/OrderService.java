@@ -11,6 +11,7 @@ import com.library.db.repository.book.BookRepository;
 import com.library.db.repository.order.BookOrderRepository;
 import com.library.db.repository.order.OrderRepository;
 import com.library.db.repository.user.UsersRepository;
+import com.library.db.utils.OrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -53,20 +55,21 @@ public class OrderService {
 
     public Orders createNewOrder (OrderRecord orderRecord, Long userId){
         Orders order = new Orders();
+        Optional<Users> currentUser = usersRepository.findById(userId);
         order.setOrderNumber(order.getOrderNumber());
         order.setBookingDate(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
         order.setOrderTotal(order.getOrderTotal());
         order.setAddress(order.getAddress());
-        // order.setCurrentOrder = true;
-        // order.setUserID(userId);
+        order.setCurrentOrder(true);
+        order.setUser(currentUser.get());
+        order.setOrderStatus(OrderStatus.IN_PROGRESS.name());
         Orders savedOrder = orderRepository.save(order);
 
         if (savedOrder != null){
             // trovo l'utente con l'id con findById
-            Optional<Users> currentUser = usersRepository.findById(userId);
             if (currentUser.get() != null) {
                 Users user = currentUser.get();
-                user.setCurrentOrder(savedOrder);
+                user.setOrders(List.of(savedOrder));
                 usersRepository.save(user);
             };
             // Aggiungi i record alla tabella BOOK_ORDERS
