@@ -43,5 +43,10 @@ public class OrderController {
             @RequestBody OrderRecord orderRecord,
             @RequestParam(required = true) Long userId){
         return orderService.createNewOrder(orderRecord, userId);}
+
+    @PutMapping("/modify/{orderId}")
+    public void modifyOrder(@PathVariable("orderId") Long orderId){
+
+    }
 }
 

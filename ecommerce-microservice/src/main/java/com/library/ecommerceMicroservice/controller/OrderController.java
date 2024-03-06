@@ -56,4 +56,9 @@ public class OrderController {
         }
         return  Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("A problem has benne encountered with the order insert. Please try again").build();
     }
+
+    @PutMapping("/modify/{orderId}")
+    public Response modifyOrder(@PathVariable("orderId") Long orderId){
+        return null;
+    }
 }
