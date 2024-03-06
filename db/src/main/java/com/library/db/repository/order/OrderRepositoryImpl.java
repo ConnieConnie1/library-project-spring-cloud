@@ -61,7 +61,6 @@ public class OrderRepositoryImpl implements OrderCustomRepository {
         Root<Orders> root = cq.from(Orders.class);
         List<Predicate> predicates = new ArrayList<>();
         Join<Orders, BookOrder> joinBookOrder = root.join("books");
-        predicates.add(cb.equal(root.get("currentOrder"), true));
         predicates.add(cb.equal(root.get("id"), id));
         joinBookOrder.join("orders");
         cq.where(predicates.stream().toArray(Predicate[]::new));

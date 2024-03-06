@@ -40,6 +40,9 @@ public class Orders {
     @Column(name = "CURRENT_ORDER")
     private Boolean currentOrder;
 
+    @Column(name = "ORDER_STATUS")
+    private String orderStatus;
+
 
     public Long getId() {
         return id;
@@ -103,5 +106,13 @@ public class Orders {
 
     public void setUser(Users user) {
         this.user = user;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
     }
 }
