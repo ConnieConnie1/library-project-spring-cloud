@@ -2,7 +2,6 @@ package com.library.db.entity.order;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.library.db.entity.publisher.Publisher;
 import com.library.db.entity.user.Users;
 import com.library.db.entity.book.Book;
 import jakarta.persistence.*;

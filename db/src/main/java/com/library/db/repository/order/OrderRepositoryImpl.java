@@ -4,6 +4,7 @@ package com.library.db.repository.order;
 import com.library.db.entity.book.Book;
 import com.library.db.entity.book.BookOrder;
 import com.library.db.entity.order.Orders;
+import com.library.db.entity.user.Users;
 import com.library.db.record.PaginationResponse;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -18,7 +19,7 @@ public class OrderRepositoryImpl implements OrderCustomRepository {
     EntityManager em;
 
     @Override
-    public PaginationResponse<Orders> findOrdersByFilter(Pageable pageable, Integer orderNumber, Long userId) {
+    public PaginationResponse<Orders> findOrdersByFilter(Pageable pageable, Integer orderNumber, String mail) {
         PaginationResponse<Orders> response = new PaginationResponse<Orders>();
 
         final int currentPageNumber = pageable.getPageNumber();
@@ -27,7 +28,7 @@ public class OrderRepositoryImpl implements OrderCustomRepository {
         // Per il libro
         CriteriaQuery<Orders> cq = cb.createQuery(Orders.class);
         Root<Orders> root = cq.from(Orders.class);
-        List<Predicate> predicates = getPredicates(cb, root, orderNumber, userId);
+        List<Predicate> predicates = getPredicates(cb, root, orderNumber, mail);
 
         cq.where(predicates.stream().toArray(Predicate[]::new));
         cq.orderBy(cb.asc(root.get("orderNumber"))); // Ordinati in ordine di numero ordine
@@ -40,7 +41,7 @@ public class OrderRepositoryImpl implements OrderCustomRepository {
         // Per la count
         CriteriaQuery<Long> cqCount = cb.createQuery(Long.class);
         Root<Orders> rootCount = cqCount.from(Orders.class);
-        List<Predicate> predicateCount = getPredicates(cb, rootCount, orderNumber, userId);
+        List<Predicate> predicateCount = getPredicates(cb, rootCount, orderNumber, mail);
         cqCount.select(cb.count(rootCount));
         cqCount.where(predicateCount.stream().toArray(Predicate[]::new));
         Long orderCount = em.createQuery(cqCount).getSingleResult();
@@ -68,16 +69,18 @@ public class OrderRepositoryImpl implements OrderCustomRepository {
         return query.getSingleResult();
     }
 
-    private List<Predicate> getPredicates(CriteriaBuilder cb, Root<Orders> root, Integer orderNumber, Long userId) {
+    private List<Predicate> getPredicates(CriteriaBuilder cb, Root<Orders> root, Integer orderNumber, String mail) {
         List<Predicate> predicates = new ArrayList<>();
         Join<Orders, Book> bookJoin = root.join("books");
+        Join<Orders, Users> userJoin = root.join("user");
+
 
         if (orderNumber != null) {
             predicates.add(cb.equal(root.get("orderNumber"), orderNumber));
         }
 
-        if (userId != null) {
-            predicates.add(cb.equal(bookJoin.get("userId"), userId));
+        if (mail != null) {
+            predicates.add(cb.equal(userJoin.get("id"), mail));
         }
         return predicates;
 

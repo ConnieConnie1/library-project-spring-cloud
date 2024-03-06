@@ -6,7 +6,7 @@ import com.example.loginmicroservice.entity.user.Users;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -30,7 +30,7 @@ public class Orders {
     @Column(name = "ADDRESS")
     private String address;
     @Column(name = "BOOKING_DATE")
-    private Date bookingDate;
+    private LocalDate bookingDate;
     @Column(name = "ORDER_TOTAL")
     private BigDecimal orderTotal;
 
@@ -70,11 +70,11 @@ public class Orders {
         this.address = address;
     }
 
-    public Date getBookingDate() {
+    public LocalDate getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(Date bookingDate) {
+    public void setBookingDate(LocalDate bookingDate) {
         this.bookingDate = bookingDate;
     }
 

@@ -1,6 +1,7 @@
 package com.library.ecommerceMicroservice.service;
 
 import com.library.ecommerceMicroservice.entity.Orders;
+import com.library.ecommerceMicroservice.entity.Users;
 import com.library.ecommerceMicroservice.record.BookRecord;
 import com.library.ecommerceMicroservice.record.OrderRecord;
 import com.library.ecommerceMicroservice.record.PaginationResponse;
@@ -8,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -26,23 +29,23 @@ public class OrderService {
     private DiscoveryClient discoveryClient;
 
 
-    public PaginationResponse<Orders> getAllOrders(Integer orderNumber, Long userId, int currentPage, int pageSize) {
+    public PaginationResponse<Orders> getAllOrders(Integer orderNumber, String mail, int currentPage, int pageSize) {
         String databaseServiceUrl = discoveryClient.getInstances("db-microservice").get(0).getUri().toString();
         String url = databaseServiceUrl + "/api/db/order";
         if (orderNumber != null) {
             url += "?orderNumber=" + orderNumber;
         }
 
-        if (userId != null) {
-            url += (orderNumber != null ? "&" : "?") + "userId=" + userId;
+        if (mail != null) {
+            url += (orderNumber != null ? "&" : "?") + "email=" + mail;
         }
 
         if (currentPage > 0) {
-            url += (orderNumber != null || userId != null ? "&" : "?") + "currentPage=" + currentPage;
+            url += (orderNumber != null || mail != null ? "&" : "?") + "currentPage=" + currentPage;
         }
 
         if (pageSize > 0) {
-            url += (orderNumber != null || userId != null || currentPage > 0 ? "&" : "?") + "pageSize=" + pageSize;
+            url += (orderNumber != null || mail != null || currentPage > 0 ? "&" : "?") + "pageSize=" + pageSize;
         }
 
 
@@ -72,4 +75,23 @@ public class OrderService {
         String databaseServiceUrl = discoveryClient.getInstances("db-microservice").get(0).getUri().toString();
         restTemplate.delete(databaseServiceUrl + "/api/db/order/delete/" + id);
     }
+
+
+    //Metodo per creare un nuovo ordine, restituisci un oggetto record
+    public OrderRecord newOrder(OrderRecord requestBody) {
+        // Faccio la chiamata
+        String databaseServiceUrl = discoveryClient.getInstances("db-microservice").get(0).getUri().toString();
+
+
+
+        // faccio una POST nel DB
+        ResponseEntity<OrderRecord> response = restTemplate.postForEntity(databaseServiceUrl +"api/db/order/new",
+                requestBody,
+                OrderRecord.class);
+        if(response.getStatusCode() == HttpStatus.OK) {
+            return response.getBody();
+        } else return null;
+    }
+
+
 }

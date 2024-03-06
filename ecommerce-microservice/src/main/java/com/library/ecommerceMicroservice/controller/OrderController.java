@@ -5,6 +5,7 @@ import com.library.ecommerceMicroservice.record.OrderRecord;
 import com.library.ecommerceMicroservice.record.PaginationResponse;
 import com.library.ecommerceMicroservice.service.OrderService;
 import jakarta.ws.rs.core.Response;
+import org.hibernate.query.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,10 +26,10 @@ public class OrderController {
     @GetMapping("")
     public PaginationResponse<Orders> getAllOrders(
             @RequestParam(required = false) Integer orderNumber,
-            @RequestParam(required = true) Long userId,
+            @RequestParam(required = false) String mail,
             @RequestParam(required = false, defaultValue = "1") Integer currentPage,
             @RequestParam(required = false, defaultValue = "10") Integer pageSize) {
-        return orderService.getAllOrders(orderNumber, userId, currentPage, pageSize);
+        return orderService.getAllOrders(orderNumber, mail, currentPage, pageSize);
 
     }
 
@@ -45,5 +46,14 @@ public class OrderController {
     public Response deleteOrder (@PathVariable("orderId") Long orderId){
         orderService.deleteOrderById(orderId);
         return Response.ok("Order successfully cancelled").build();
+    }
+
+    @PostMapping("/new")
+    public Response newOrder(@RequestBody OrderRecord orderRecord){
+        OrderRecord response = orderService.newOrder(orderRecord);
+        if (Objects.nonNull(response)){
+            return  Response.ok("Order inserted successfully").build();
+        }
+        return  Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("A problem has benne encountered with the order insert. Please try again").build();
     }
 }

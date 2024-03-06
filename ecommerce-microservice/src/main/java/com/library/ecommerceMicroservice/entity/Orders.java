@@ -1,5 +1,6 @@
 package com.library.ecommerceMicroservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
