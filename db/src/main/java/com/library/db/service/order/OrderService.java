@@ -38,8 +38,7 @@ public class OrderService {
 
 
     public Orders getOrderById(Long id) {
-        Orders order = orderRepository.findOrderById(id);
-        return order;
+        return orderRepository.findOrderById(id);
     }
     
     public void deleteOrderById(Long id){

@@ -1,6 +1,7 @@
 package com.example.loginmicroservice.entity.user;
 
 import com.example.loginmicroservice.entity.order.Orders;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -31,13 +32,9 @@ public class Users {
     @Column(name = "ADDRESS")
     private String address;
 
-    @ManyToOne(targetEntity = Orders.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_OF_PAST_ORDERS")
-    private List<Orders> precedentOrders;
-
-    @OneToOne(targetEntity = Orders.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = " ID_OF_CURRENT_ORDERS")
-    private Orders currentOrder;
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Orders> orders;
 
     @Column(name = "PASSWORD")
     private String password;
@@ -93,21 +90,6 @@ public class Users {
         this.address = address;
     }
 
-    public List<Orders> getPrecedentOrders() {
-        return precedentOrders;
-    }
-
-    public void setPrecedentOrders(List<Orders> precedentOrders) {
-        this.precedentOrders = precedentOrders;
-    }
-
-    public Orders getCurrentOrder() {
-        return currentOrder;
-    }
-
-    public void setCurrentOrder(Orders currentOrder) {
-        this.currentOrder = currentOrder;
-    }
 
     public String getPassword() {
         return password;
@@ -123,5 +105,13 @@ public class Users {
 
     public void setDateOfRegistration(LocalDateTime dateOfRegistration) {
         this.dateOfRegistration = dateOfRegistration;
+    }
+
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
     }
 }
