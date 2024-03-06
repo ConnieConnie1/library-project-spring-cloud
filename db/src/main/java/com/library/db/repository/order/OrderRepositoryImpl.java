@@ -7,6 +7,7 @@ import com.library.db.entity.order.Orders;
 import com.library.db.entity.user.Users;
 import com.library.db.record.PaginationResponse;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.*;
@@ -66,7 +67,12 @@ public class OrderRepositoryImpl implements OrderCustomRepository {
         joinBookOrder.join("orders");
         cq.where(predicates.stream().toArray(Predicate[]::new));
         TypedQuery<Orders> query = em.createQuery(cq);
-        return query.getSingleResult();
+        try{
+            return query.getSingleResult();
+        }catch (NoResultException ex){
+            return null;
+        }
+
     }
 
     private List<Predicate> getPredicates(CriteriaBuilder cb, Root<Orders> root, Integer orderNumber, String mail) {

@@ -13,6 +13,7 @@ import com.library.db.repository.order.BookOrderRepository;
 import com.library.db.repository.order.OrderRepository;
 import com.library.db.repository.user.UsersRepository;
 import com.library.db.utils.OrderStatus;
+import jakarta.persistence.NoResultException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -41,7 +42,7 @@ public class OrderService {
 
 
     public Orders getOrderById(Long id) {
-        return orderRepository.findOrderById(id);
+            return orderRepository.findOrderById(id);
     }
     
     public void deleteOrderById(Long id){
