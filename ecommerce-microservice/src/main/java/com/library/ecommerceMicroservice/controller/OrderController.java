@@ -1,6 +1,7 @@
 package com.library.ecommerceMicroservice.controller;
 
 import com.library.ecommerceMicroservice.entity.Orders;
+import com.library.ecommerceMicroservice.record.OrderModifyRecord;
 import com.library.ecommerceMicroservice.record.OrderRecord;
 import com.library.ecommerceMicroservice.record.PaginationResponse;
 import com.library.ecommerceMicroservice.service.OrderService;
@@ -57,8 +58,9 @@ public class OrderController {
         return  Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("A problem has benne encountered with the order insert. Please try again").build();
     }
 
-    @PutMapping("/modify/{orderId}")
-    public Response modifyOrder(@PathVariable("orderId") Long orderId){
-        return null;
+    @PutMapping("/modify")
+    public Response modifyOrder(@RequestBody OrderModifyRecord orderRecord){
+        orderService.modifyOrder(orderRecord);
+        return Response.ok("Order successfully modified").build();
     }
 }

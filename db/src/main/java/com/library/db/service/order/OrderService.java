@@ -6,6 +6,7 @@ import com.library.db.entity.order.Orders;
 import com.library.db.entity.user.Users;
 import com.library.db.record.PaginationResponse;
 import com.library.db.record.book.BookRecord;
+import com.library.db.record.order.OrderModifyRecord;
 import com.library.db.record.order.OrderRecord;
 import com.library.db.repository.book.BookRepository;
 import com.library.db.repository.order.BookOrderRepository;
@@ -49,8 +50,15 @@ public class OrderService {
 
     public PaginationResponse<Orders> getAllOrders(Integer orderNumber, String mail, Long userId, Integer currentPage, Integer pageSize) {
         Pageable pageable = PageRequest.of(currentPage, pageSize);
-        PaginationResponse<Orders> response = orderRepository.findOrdersByFilter(pageable, orderNumber, mail);
-        return response;
+        return orderRepository.findOrdersByFilter(pageable, orderNumber, mail);
+    }
+
+    public void modifyOrder (OrderModifyRecord record){
+        Optional<Orders> ordersOptional = orderRepository.findById(record.orderId());
+        Orders order = ordersOptional.get();
+        order.setOrderStatus(record.orderStatus());
+        order.setCurrentOrder(record.currentOrder());
+        orderRepository.save(order);
     }
 
     public Orders createNewOrder (OrderRecord orderRecord, Long userId){

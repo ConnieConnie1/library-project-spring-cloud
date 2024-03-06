@@ -3,6 +3,7 @@ package com.library.ecommerceMicroservice.service;
 import com.library.ecommerceMicroservice.entity.Orders;
 import com.library.ecommerceMicroservice.entity.Users;
 import com.library.ecommerceMicroservice.record.BookRecord;
+import com.library.ecommerceMicroservice.record.OrderModifyRecord;
 import com.library.ecommerceMicroservice.record.OrderRecord;
 import com.library.ecommerceMicroservice.record.PaginationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,6 +90,11 @@ public class OrderService {
         if(response.getStatusCode() == HttpStatus.OK) {
             return response.getBody();
         } else return null;
+    }
+
+    public void modifyOrder(OrderModifyRecord record){
+        String databaseServiceUrl = discoveryClient.getInstances("db-microservice").get(0).getUri().toString();
+        restTemplate.put(databaseServiceUrl + "/api/db/order/modify", record);
     }
 
 

@@ -2,6 +2,7 @@ package com.library.db.controller.order;
 
 import com.library.db.entity.order.Orders;
 import com.library.db.record.PaginationResponse;
+import com.library.db.record.order.OrderModifyRecord;
 import com.library.db.record.order.OrderRecord;
 import com.library.db.service.order.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +45,9 @@ public class OrderController {
             @RequestParam(required = true) Long userId){
         return orderService.createNewOrder(orderRecord, userId);}
 
-    @PutMapping("/modify/{orderId}")
-    public void modifyOrder(@PathVariable("orderId") Long orderId){
-
+    @PutMapping("/modify")
+    public void modifyOrder(@RequestBody OrderModifyRecord orderRecord){
+        orderService.modifyOrder(orderRecord);
     }
 }
 
