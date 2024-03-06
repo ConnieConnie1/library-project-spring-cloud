@@ -82,8 +82,6 @@ public class OrderService {
         // Faccio la chiamata
         String databaseServiceUrl = discoveryClient.getInstances("db-microservice").get(0).getUri().toString();
 
-
-
         // faccio una POST nel DB
         ResponseEntity<OrderRecord> response = restTemplate.postForEntity(databaseServiceUrl +"api/db/order/new",
                 requestBody,

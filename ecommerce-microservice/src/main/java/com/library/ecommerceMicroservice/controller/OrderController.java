@@ -52,7 +52,7 @@ public class OrderController {
     public Response newOrder(@RequestBody OrderRecord orderRecord){
         OrderRecord response = orderService.newOrder(orderRecord);
         if (Objects.nonNull(response)){
-            return  Response.ok("Order inserted successfully").build();
+            return  Response.ok(response).build();
         }
         return  Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("A problem has benne encountered with the order insert. Please try again").build();
     }

@@ -22,9 +22,10 @@ public class OrderController {
     PaginationResponse<Orders> getAllOrders(
             @RequestParam(required = false) Integer orderNumber,
             @RequestParam(required = false) String mail,
+            @RequestParam(required = true) Long userId,
             @RequestParam(required = false) Integer currentPage,
             @RequestParam(required = false) Integer pageSize) {
-        return orderService.getAllOrders(orderNumber, mail, currentPage, pageSize);
+        return orderService.getAllOrders(orderNumber, mail, userId, currentPage, pageSize);
     }
 
     @GetMapping("/{orderId}")
@@ -38,6 +39,9 @@ public class OrderController {
     }
 
     @PostMapping("/new")
-    public Orders createOrder(@RequestBody OrderRecord orderRecord){ return orderService.createNewOrder(orderRecord);}
+    public Orders createOrder(
+            @RequestBody OrderRecord orderRecord,
+            @RequestParam(required = true) Long userId){
+        return orderService.createNewOrder(orderRecord, userId);}
 }
 

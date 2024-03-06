@@ -10,10 +10,10 @@ public class BookOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = " ORDER_ID")
-    private Integer orderId;
+    private Long orderId;
 
     @Column(name = " BOOK_ID")
-    private Integer bookId;
+    private Long bookId;
 
     public Long getId() {
         return id;
@@ -23,19 +23,19 @@ public class BookOrder {
         this.id = id;
     }
 
-    public Integer getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
 
-    public Integer getBookId() {
+    public Long getBookId() {
         return bookId;
     }
 
-    public void setBookId(Integer bookId) {
+    public void setBookId(Long bookId) {
         this.bookId = bookId;
     }
 }
